@@ -27,12 +27,15 @@ class UsersController < ApplicationController
   	user.save
 
     #Redirect to homepage after all details have been entered and user clicks submission button
-  	redirect_to "/"
+  	redirect_to users_url
   end
 
   #Show user details
   def show
     @user = User.find_by(id: params[:id])
+    if @user == nil
+        redirect_to users_url, notice: "User not found."
+    end
   end
 
   #Edit the user's details
@@ -61,14 +64,14 @@ class UsersController < ApplicationController
   	user.interested_in_hosting = params[:interested_in_hosting]
   	user.interested_in_hanging_out = params[:interested_in_hanging_out]
   	user.save
-  	redirect_to "/"
+  	redirect_to users_url
   end
 
   #Find the user by id and delete him/her from database
   def destroy
   	user = User.find_by(id: params[:id])
   	user.delete
-  	redirect_to "/"
+  	redirect_to users_url
   end
 
 end

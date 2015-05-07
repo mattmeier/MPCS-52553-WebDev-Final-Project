@@ -1,5 +1,5 @@
 <h3>Edit Your User Profile</h3>
-<%= form_tag "/#{@user.id}", :method => 'patch' do %>
+<%= form_tag "/users/#{@user.id}", :method => 'patch' do %>
 	<div>
 		<label for="title">Name:</label>
 		<input size="80" name="name" id="name" value="<%= @user.name%>" >
@@ -32,6 +32,22 @@
 			<% @locations.each do |location| %> 
 				<option><%= location.city%></option>
 			<% end %>
+		</select>
+	</div>
+
+	<div>
+		<label>Interested in hanging out:: </label>
+		<select name="interested_in_hanging_out" value="<%= @user.interested_in_hanging_out %>">
+			<option>yes</option>
+			<option>no</option>
+		</select>
+	</div>
+
+	<div>
+		<label>Willing to host: </label>
+		<select name="interested_in_hosting" value="<%= @user.interested_in_hosting %>">
+			<option>yes</option>
+			<option>no</option>
 		</select>
 	</div>
 
