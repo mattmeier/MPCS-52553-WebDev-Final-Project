@@ -1,0 +1,22 @@
+User
+  email: string
+  password: string
+  university_id: integer
+  graduation_year: integer
+  major: string
+  bio: string
+  location_id: integer
+  interested_in_hosting: string
+  interested_in_hanging_out: string
+
+Location
+  city: string
+  state: string
+
+University
+  name: string
+  color: string
+
+Friendlist
+  creator_id: integer
+  friend_id: integer
