@@ -1,0 +1,30 @@
+<h1>Welcome to StayInTouch </h1>
+
+<%= link_to "New User", "/new" %>
+
+<br><br>
+
+<h3> Stay in touch with your former classmates: </h3>
+<table class="table table-striped">
+	
+	<tr>
+		<th>Name</th>
+		<th>Email</th>
+		<th>University</th>
+		<th>Graduation Year</th>
+		<th>Location</th>
+		<th></th>
+	</tr>
+
+	<% @users.each do |user| %>
+	<tr>
+		<!--Retrieve and show the info of each user. Query database to find the user's details corresponding with the id-->
+		<td><%= link_to user.name, "/#{user.id}" %></td>
+		<td><%= user.email %></td>
+		<td><%= user.graduation_year %> </td>
+		<td><%= link_to "Edit", "/#{user.id}/edit" %></td>
+		<td><%= link_to "Delete", "/#{user.id}", :method => 'delete' %></td>
+	</tr>
+	<% end %>
+	
+</table>

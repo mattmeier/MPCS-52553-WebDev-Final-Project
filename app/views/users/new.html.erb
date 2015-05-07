@@ -1,0 +1,42 @@
+<h1>Create a New User Profile</h1>
+
+<%= form_tag "/", :method => 'post' do %>
+	<div>
+		<label for="title">Name:</label>
+		<input size="80" name="name" id="name" >
+	</div>
+
+	<div>
+		<label for="title">Email:</label>
+		<input size="80" name="email" id="email" >
+	</div>
+
+	<div>
+		<label>University:</label>
+		<select name="university">
+			<!--Loop through all universities and get their names. Later on, we plan on allowing for inputing new university, if it is not already there-->
+			<% @universities.each do |university| %> 
+				<option><%= university.name%></option>
+			<% end %>
+		</select>
+	</div>
+
+	<div>
+		<label for="title">Graduation Year:</label>
+		<input size="80" name="graduation_year" id="graduation_year" >
+	</div>
+
+	<div>
+		<label>Location: </label>
+		<select name="location">
+			<!--Loop through all locations and get their names. Later on, we plan on allowing for inputing new location, if it is not already there-->
+			<% @locations.each do |location| %> 
+				<option><%= location.city%></option>
+			<% end %>
+		</select>
+	</div>
+
+<br>
+  <input type="submit" name="commit" value="Create User Profile">
+
+<% end %>

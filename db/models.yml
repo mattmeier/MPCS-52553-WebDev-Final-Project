@@ -19,5 +19,5 @@ University
   color: string
 
 Friendlist
-  creator_id: integer
+  requester_id: integer
   friend_id: integer

@@ -14,12 +14,12 @@
 ActiveRecord::Schema.define(version: 0) do
 
   create_table "friendlists", force: :cascade do |t|
-    t.integer "creator_id"
     t.integer "friend_id"
+    t.integer "requester_id"
   end
 
-  add_index "friendlists", ["creator_id"], name: "index_friendlists_on_creator_id"
   add_index "friendlists", ["friend_id"], name: "index_friendlists_on_friend_id"
+  add_index "friendlists", ["requester_id"], name: "index_friendlists_on_requester_id"
 
   create_table "locations", force: :cascade do |t|
     t.string "city"
