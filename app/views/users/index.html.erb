@@ -4,7 +4,15 @@
 
 <br><br>
 
-<h3> Stay in touch with your former classmates: </h3>
+<h3> Stay in touch with your former classmates! </h3>
+
+<%= form_tag users_url, :method => "get" do %>
+
+  <%= text_field_tag :keyword %>
+  <%= submit_tag "Search classmate by name" %>
+
+<% end %>
+<h4> Users: </h4>
 <table class="table table-striped">
 	
 	<tr>
