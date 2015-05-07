@@ -64,7 +64,7 @@ class UsersController < ApplicationController
   	user.interested_in_hosting = params[:interested_in_hosting]
   	user.interested_in_hanging_out = params[:interested_in_hanging_out]
   	user.save
-  	redirect_to users_url
+  	redirect_to user_url
   end
 
   #Find the user by id and delete him/her from database
