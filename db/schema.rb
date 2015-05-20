@@ -13,13 +13,35 @@
 
 ActiveRecord::Schema.define(version: 0) do
 
-  create_table "friendlists", force: :cascade do |t|
-    t.integer "friend_id"
-    t.integer "requester_id"
+  create_table "event_signups", force: :cascade do |t|
+    t.integer "event_id"
+    t.integer "user_id"
   end
 
-  add_index "friendlists", ["friend_id"], name: "index_friendlists_on_friend_id"
-  add_index "friendlists", ["requester_id"], name: "index_friendlists_on_requester_id"
+  add_index "event_signups", ["event_id"], name: "index_event_signups_on_event_id"
+  add_index "event_signups", ["user_id"], name: "index_event_signups_on_user_id"
+
+  create_table "events", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "university_id"
+    t.integer  "location_id"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.text     "description"
+    t.integer  "organizer_id"
+  end
+
+  add_index "events", ["location_id"], name: "index_events_on_location_id"
+  add_index "events", ["organizer_id"], name: "index_events_on_organizer_id"
+  add_index "events", ["university_id"], name: "index_events_on_university_id"
+
+  create_table "friendships", force: :cascade do |t|
+    t.integer "requester_id"
+    t.integer "friend_id"
+  end
+
+  add_index "friendships", ["friend_id"], name: "index_friendships_on_friend_id"
+  add_index "friendships", ["requester_id"], name: "index_friendships_on_requester_id"
 
   create_table "locations", force: :cascade do |t|
     t.string "city"
@@ -27,9 +49,12 @@ ActiveRecord::Schema.define(version: 0) do
   end
 
   create_table "universities", force: :cascade do |t|
-    t.string "name"
-    t.string "color"
+    t.string  "name"
+    t.string  "color"
+    t.integer "location_id"
   end
+
+  add_index "universities", ["location_id"], name: "index_universities_on_location_id"
 
   create_table "users", force: :cascade do |t|
     t.string  "email"

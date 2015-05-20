@@ -5,7 +5,7 @@
 User.delete_all
 Location.delete_all
 University.delete_all
-Friendlist.delete_all
+Friendship.delete_all
 Event.delete_all
 
 Location.create(id: '1', city: 'Chicago', state: 'IL')
@@ -50,4 +50,4 @@ Friendship.create(id: '7', requester_id: 4, friend_id: 1)
 Friendship.create(id: '8', requester_id: 3, friend_id: 2)
 Friendship.create(id: '9', requester_id: 2, friend_id: 7)
 
-Event.create(id: 1, name: 'Princeton Reunions', university_id: 4, location_id: 11, start_time: DateTime.strptime("22/05/2015 16:00", "%m/%d/%Y %H:%M"), end_time: DateTime.strptime("24/05/2015 23:00", "%m/%d/%Y %H:%M"), description: 'Reunions weekend attracts almost 25,000 alumni, family and friends for walks, talks, community service projects, Alumni-Faculty Forums, picnics, parties, concerts, dancing, meeting old friends, making new ones and, of course, marching in the One and Only P-rade! - See more at: http://alumni.princeton.edu/goinback/reunions/#sthash.JLm4qbYE.dpuf', organizer_id: 8)
+Event.create(id: 1, name: 'Princeton Reunions', university_id: 4, location_id: 11, start_time: DateTime.new(2015,5,22,17), end_time: DateTime.new(2015,5,24,23), description: 'Reunions weekend attracts almost 25,000 alumni, family and friends for walks, talks, community service projects, Alumni-Faculty Forums, picnics, parties, concerts, dancing, meeting old friends, making new ones and, of course, marching in the One and Only P-rade! - See more at: http://alumni.princeton.edu/goinback/reunions/#sthash.JLm4qbYE.dpuf', organizer_id: 8)
