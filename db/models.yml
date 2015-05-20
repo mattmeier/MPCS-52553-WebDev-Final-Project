@@ -19,14 +19,19 @@ University
   color: string
   location_id: integer
 
-Friendlist
+Friendship
   requester_id: integer
   friend_id: integer
 
 Event
   name: string
+  university_id: integer
   location_id: integer
-  date: date
-  time: time
+  start_time: datetime
+  end_time: datetime
   description: text
   organizer_id: integer
+
+EventSignup
+  event_id: integer
+  user_id: integer

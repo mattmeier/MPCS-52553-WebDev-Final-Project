@@ -1,7 +1,7 @@
 class Location < ActiveRecord::Base
-    has_many :universities
+    has_many :users
     has_many :events
-    has_many :users, :through => universities
+    has_many :universities
     
     validates_presence_of :city
     validates_presence_of :state
