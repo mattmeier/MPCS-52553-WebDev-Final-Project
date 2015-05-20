@@ -17,7 +17,16 @@ Location
 University
   name: string
   color: string
+  location_id: integer
 
 Friendlist
   requester_id: integer
   friend_id: integer
+
+Event
+  name: string
+  location_id: integer
+  date: date
+  time: time
+  description: text
+  organizer_id: integer
