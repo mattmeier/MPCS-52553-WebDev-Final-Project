@@ -1,4 +1,16 @@
+<style>
+  img {
+    float: center;
+    box-shadow: none;
+    height: "200px";
+  }
+</style>
+
 <h2><%= @university.name %></h2>
+
+<div>
+<%= image_tag @university.logo_url, height: '200' %>
+</div>
 
 <br><%=@university.description%><br>
 
