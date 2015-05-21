@@ -7,4 +7,5 @@ class University < ActiveRecord::Base
     validates_presence_of :color
     validates_presence_of :description
     validates_presence_of :location
+    validates_presence_of :logo_url
 end

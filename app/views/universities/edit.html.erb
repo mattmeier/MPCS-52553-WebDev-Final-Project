@@ -22,7 +22,12 @@
 
   <div>
     <label>Description: </label>
-    <textarea name="description" cols="80" rows="3"><%= @event.description %>"</textarea>
+    <textarea name="description" cols="80" rows="3"><%= @university.description %></textarea>
+  </div>
+
+  <div>
+    <label for="logo_url">URL to logo:</label>
+    <input size="100" name="logo_url" id="logo_url" value="<%= @university.logo_url %>">
   </div>
 
   <input type="submit" name="commit" value="Update University">

@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.string  "color"
     t.integer "location_id"
     t.text    "description"
+    t.string  "logo_url"
   end
 
   add_index "universities", ["location_id"], name: "index_universities_on_location_id"
