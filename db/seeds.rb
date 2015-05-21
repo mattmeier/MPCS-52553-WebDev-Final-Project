@@ -29,7 +29,7 @@ University.create(id: '4', name: 'Princeton University', color: 'FF8F00', locati
 University.create(id: '5', name: 'Stanford University', color: '8C1515', location_id: 3)
 University.create(id: '6', name: 'Yale University', color: '0E4C92', location_id: 12)
 University.create(id: '7', name: 'Columbia University', color: 'C4D8E2', location_id: 2)
-University.create(id: '8', name: 'Berkeley University', color: '003A70', location_id: 13)
+University.create(id: '8', name: 'University of California, Berkeley', color: '003A70', location_id: 13)
 
 User.create(id: '1', name: 'Matthias Meier', email: 'meierm@uchicago.edu', password: '123polizei', university_id: 1, graduation_year: 2015, major: 'Computer Science', bio: 'I love web design.', location_id: '1', interested_in_hosting: 'yes', interested_in_hanging_out: 'yes')
 User.create(id: '2', name: 'Will Boyer', email: 'wboyer@northwestern.edu', password: 'dajs32ids', university_id: 2, graduation_year: 2013, major: 'Mathematics', bio: 'I am a Maths Geek.', location_id: '4', interested_in_hosting: 'no', interested_in_hanging_out: 'yes')

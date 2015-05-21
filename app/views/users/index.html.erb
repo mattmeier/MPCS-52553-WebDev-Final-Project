@@ -20,6 +20,7 @@
 		<th>Email</th>
 		<th>University</th>
 		<th>Graduation Year</th>
+		<th>Major</th>
 		<th>Location</th>
 		<th></th>
 	</tr>
@@ -31,6 +32,7 @@
 		<td><%= mail_to user.email,"#{user.email}"  %></td>
 		<td><%= University.find_by(id: user.university_id).name %></td>
 		<td><%= user.graduation_year %> </td>
+		<td><%= user.major %> </td>
 		<td><%= Location.find_by(id: user.location_id).city %></td>
 		<td><%= link_to "Edit", "/users/#{user.id}/edit" %></td>
 		<td><%= link_to "Delete",  user_path(user.id), :method => 'delete' %></td>

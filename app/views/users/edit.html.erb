@@ -1,57 +1,81 @@
 <h3>Edit Your User Profile</h3>
+
+<% if @user.errors.any? %>
+  <ul class="errors">
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <%= form_tag "/users/#{@user.id}", :method => 'patch' do %>
-	<div>
-		<label for="title">Name:</label>
-		<input size="80" name="name" id="name" value="<%= @user.name%>" >
-	</div>
+<div>
+	<label for="title">Name </label>
+	<input size="80" name="name" id="name" value="<%= @user.name%>" >
+</div>
 
-	<div>
-		<label for="title">Email:</label>
-		<input size="80" name="email" id="email" value="<%= @user.email%>" >
-	</div>
+<div>
+	<label for="title">Email </label>
+	<input size="80" name="email" id="email" value="<%= @user.email%>" >
+</div>
 
-	<div>
-		<label>University:</label>
-		<!--Search / query the university table in database to find university name for given id -->
-		<select name="university" value="<%= University.find_by(:id => @user.university_id).name %>">
-			<% @universities.each do |university| %> 
-				<option><%= university.name%></option>
-			<% end %>
-		</select>
-	</div>
+<div>
+	<label for="title">Password </label>
+	<input size="80" name="password" id="email" value="<%= @user.password%>" >
+</div>
 
-	<div>
-		<label for="title">Graduation Year:</label>
-		<input size="80" name="graduation_year" id="graduation_year" value="<%= @user.graduation_year %>" >
-	</div>
+<div>
+	<label>University </label>
+	<!--Search / query the university table in database to find university name for given id -->
+	<select name="university" value="<%= University.find_by(:id => @user.university_id).name %>">
+		<% @universities.each do |university| %> 
+		<option><%= university.name%></option>
+		<% end %>
+	</select>
+</div>
 
-	<div>
-		<label>Location: </label>
-		<!--Search / query the location table in database to find location name for given id-->
-		<select name="location" value="<%= Location.find_by(:id => @user.location_id).city %>">
-			<% @locations.each do |location| %> 
-				<option><%= location.city%></option>
-			<% end %>
-		</select>
-	</div>
+<div>
+	<label for="title">Graduation Year </label>
+	<input size="80" name="graduation_year" id="graduation_year" value="<%= @user.graduation_year %>" >
+</div>
 
-	<div>
-		<label>Interested in hanging out:: </label>
-		<select name="interested_in_hanging_out" value="<%= @user.interested_in_hanging_out %>">
-			<option>yes</option>
-			<option>no</option>
-		</select>
-	</div>
+<div>
+	<label for="title">Major </label>
+	<input size="80" name="major" id="major" value="<%= @user.major %>" >
+</div>
 
-	<div>
-		<label>Willing to host: </label>
-		<select name="interested_in_hosting" value="<%= @user.interested_in_hosting %>">
-			<option>yes</option>
-			<option>no</option>
-		</select>
-	</div>
+<div>
+	<label>Current Location </label>
+	<!--Search / query the location table in database to find location name for given id-->
+	<select name="location" value="<%= Location.find_by(:id => @user.location_id).city %>">
+		<% @locations.each do |location| %> 
+		<option><%= location.city%></option>
+		<% end %>
+	</select>
+</div>
+
+<div>
+	<label>Bio </label>
+  	<textarea name="bio" cols="80" rows="3"></textarea>
+</div>
+
+<p>
+  	<%= radio_button_tag(:interested_in_hosting, "hosting") %>
+  	<%= label_tag(:interested_in_hosting_yes, "I am interested in hosting") %>
+  	<%= radio_button_tag(:interested_in_hosting, "not_hosting") %>
+  	<%= label_tag(:interested_in_hosting_no, "I am not interested in hosting") %>
+</p>
+ 
+<p>
+  	<%= radio_button_tag(:interested_in_hanging_out, "hanging_out") %>
+  	<%= label_tag(:interested_in_hanging_out_yes, "I am interested in hanging out") %>
+  	<%= radio_button_tag(:interested_in_hanging_out, "not_hanging_out") %>
+  	<%= label_tag(:interested_in_hanging_out_no, "I am not interested in hanging out") %>
+</p>
 
 <br>
-  <input type="submit" name="commit" value="Submit">
+
+<input type="submit" name="commit" value="Confirm Edit">
 
 <% end %>
+<p><%= link_to "Back to main page", "/users" %> </p>
