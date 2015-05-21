@@ -39,6 +39,7 @@
 		<td><%= event.end_time %> </td>
 		<td><%= mail_to event.organizer_contact_email,"#{event.organizer_contact_email}"  %></td>
 		<td><%= link_to "Edit", "/events/#{event.id}/edit" %></td>
+		<td><%= link_to "Delete",  event_path(event.id), :method => 'delete' %></td>
 	</tr>
 	<% end %>
 	
