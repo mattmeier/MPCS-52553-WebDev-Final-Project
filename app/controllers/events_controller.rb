@@ -51,6 +51,8 @@ class EventsController < ApplicationController
     
     def new
         cookies.delete("event_id")
+        @locations = Location.all
+        @universities = University.all
         @event = Event.new
         render "new"
     end

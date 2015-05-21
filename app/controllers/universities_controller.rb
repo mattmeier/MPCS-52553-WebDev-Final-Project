@@ -18,6 +18,7 @@ class UniversitiesController < ApplicationController
     
     #Create a new university and insert the new user into table, based on input parameters
     def create
+        @locations = Location.all
         @university = University.new
         @university.name = params[:name]
         @university.color = params[:color]
@@ -46,6 +47,7 @@ class UniversitiesController < ApplicationController
     
     def new
         cookies.delete("university_id")
+        @locations = Location.all
         @university = University.new
         render "new"
     end
