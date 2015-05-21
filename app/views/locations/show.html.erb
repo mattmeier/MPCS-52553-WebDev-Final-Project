@@ -1,24 +1,12 @@
-<% if cookies["user_id"].present? %>
-  <h3>Your browsing history</h3>
-
-  <p>
-    <%= User.find_by(id: cookies["user_id"]).name%>
-  </p>
-<% end %>
-
-<h2> Stay in touch with your former classmates! </h2>
-
-<p> Join our growing community of <%= @users.count %> users. <br>
-<%= link_to "Sign up and create a new user profile now!", "/users/new" %></p>
-
+<h2><%= @location.city %>, <%= @location.state %></h2>
 
 <%= form_tag users_url, :method => "get" do %>
-	Find your classmates by name:
+	Find your classmates in <%= @location.city %> by name:
 	<%= text_field_tag :keyword %>
   	<%= submit_tag "Search" %>
 <% end %>
 
-<h4> Our users include alumni from all over the US: </h4>
+<h4> Our users in <%= @location.city %> include: </h4>
 <table class="table table-striped">
 	
 	<tr>
@@ -39,10 +27,10 @@
 		<td><%= University.find_by(id: user.university_id).name %></td>
 		<td><%= user.graduation_year %> </td>
 		<td><%= user.major %> </td>
-		<td><%= Location.find_by(id: user.location_id).city %></td>
-		<td><%= link_to "Edit", "/users/#{user.id}/edit" %></td>
-		<td><%= link_to "Delete",  user_path(user.id), :method => 'delete' %></td>
+		<td><%= @location.city %></td>
 	</tr>
 	<% end %>
 	
 </table>
+
+<p><%= link_to "Back to locations main page", "/locations" %> </p>

@@ -1,0 +1,18 @@
+<%= form_tag "/location/#{@location.id}", :method => 'patch' do %>
+
+  <div>
+    <label for="city">City:</label>
+    <input size="80" name="city" id="city" value="<%= @location.city %>">
+  </div>
+
+  <div>
+    <label for="state">State:</label>
+    <input size="4" name="state" id="year" value="<%= @location.state %>">
+  </div>
+
+  <input type="submit" name="commit" value="Update Location">
+
+<% end %>
+
+
+

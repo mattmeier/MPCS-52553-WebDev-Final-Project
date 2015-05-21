@@ -20,7 +20,7 @@
       <small><%= link_to "Events", '/events' %></small>
 
       <% if cookies["user_id"].present? %>
-        <small>Howdy, <%= User.find_by(id: cookies["user_id"]).email %></small>
+        <small> &nbsp;&nbsp;&nbsp;Hello, <%= User.find_by(id: cookies["user_id"]).name %> &nbsp;&nbsp;</small>
         <small><%= link_to "Sign Out", '/logout' %></small>
       <% else %>
           <small><%= link_to "Sign Up", '/signup' %></small>

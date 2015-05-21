@@ -6,7 +6,7 @@ class UsersController < ApplicationController
         @user = User.find_by(id: params["id"])
     end
     
-    #Retrieve and display info of all users, universities and locations
+    #Retrieve and display main info of all users
     def index
         if params["keyword"].present?
             @users = User.where("name LIKE '%#{params["keyword"]}%'")
@@ -18,7 +18,7 @@ class UsersController < ApplicationController
         @locations = Location.all
     end
     
-    #Create a new users and insert the new user into table, rbased on input parameters. Note that not all aspects of our database model have been inplemented yet (e.g. the friends list)!
+    #Create a new user and insert the new user into table, based on input parameters
     def create
         @universities = University.all
         @locations = Location.all
@@ -59,7 +59,8 @@ class UsersController < ApplicationController
     
     #Show user details
     def show
-        @user = User.find_by(id: params[:id])
+        cookies["user_id"] = @user.id
+        
         if @user == nil
             redirect_to users_url, notice: "User not found."
         end
@@ -72,13 +73,14 @@ class UsersController < ApplicationController
     end
     
     def new
+        cookies.delete("user_id")
         @user = User.new
         @universities = University.all
         @locations = Location.all
         render "new"
     end
     
-    #Update the database. Note that not all aspects of our database model have been inplemented yet (e.g. the friends list)!
+    #Update the database
     def update
         @universities = University.all
         @locations = Location.all
@@ -114,10 +116,9 @@ class UsersController < ApplicationController
         end
     end
     
-    #Find the user by id and delete him/her from database
+    #Delete user from database
     def destroy
-        user = User.find_by(id: params[:id])
-        user.delete
+        @user.delete
         redirect_to users_url
     end
     

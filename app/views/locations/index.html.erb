@@ -1,0 +1,43 @@
+<% if cookies["location_id"].present? %>
+  <h3>Your browsing history</h3>
+
+  <p>
+    <%= Location.find_by(id: cookies["location_id"]).city%>
+  </p>
+<% end %>
+
+<h2> Stay in touch with your former classmates in your city! </h2>
+
+<p><%= link_to "If your current location is not yet covered, create it now and kick off a new community!", "/locations/new" %></p>
+
+<%= form_tag locations_url, :method => "get" do %>
+	Search your city or state:
+	<%= text_field_tag :keyword %>
+  	<%= submit_tag "Search" %>
+<% end %>
+
+<h4> The cities covered so far include: </h4>
+<table class="table table-striped">
+	
+	<tr>
+		<th>City</th>
+		<th>State</th>
+		<th>Number of Users</th>
+		<th>Number of Unis</th>
+		<th></th>
+	</tr>
+
+	<% @locations.each do |location| %>
+	<tr>
+		<!--Retrieve and show the info of each city. Query database to find the locations's details corresponding with the id-->
+		<td><%= link_to location.city, location_path(location.id) %></td>
+		<td><%= location.state %> </td>
+		<td><%= location.users.count %> </td>
+		<td><%= location.universities.count %> </td>
+		<td><%= link_to "Edit", "/locations/#{location.id}/edit" %></td>
+	</tr>
+	<% end %>
+	
+</table>
+
+<p><%= link_to "Back to main page", "/" %> </p>

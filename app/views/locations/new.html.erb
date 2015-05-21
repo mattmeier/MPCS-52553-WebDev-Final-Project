@@ -1,0 +1,30 @@
+<h2>Add a Location</h2>
+<h3>Create a New City Profile:</h3>
+<% if @location.errors.any? %>
+	<ul class="errors">
+		<% @location.errors.full_messages.each do |msg| %>
+			<li><%= msg %></li>
+		<% end %>
+ 	</ul>
+<% end %>
+
+<%= form_tag "/locations", :method => 'post' do %>
+
+	<p>
+		<%= label_tag :city %>
+		<%= text_field_tag :city %>
+	</p>
+
+	<p>
+		<%= label_tag :state %>
+		<%= text_field_tag :state %>
+	</p>
+	
+	<%= submit_tag "Create Location Profile!" %>
+
+<% end %>
+<p><%= link_to "Back to locations main page", "/locations" %> </p>
+
+
+
+
