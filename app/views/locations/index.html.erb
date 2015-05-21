@@ -11,7 +11,7 @@
 <p><%= link_to "If your current location is not yet covered, create it now and kick off a new community!", "/locations/new" %></p>
 
 <%= form_tag locations_url, :method => "get" do %>
-	Search your city or state:
+	<b>Search your city or state:</b>
 	<%= text_field_tag :keyword %>
   	<%= submit_tag "Search" %>
 <% end %>

@@ -1,9 +1,9 @@
 <h2><%= @user.name %></h2>
 <p><b>Email:</b> <%= mail_to "#{@user.email}", @user.email %> </p>
-<p><b>University:</b> <%= University.find_by(:id => @user.university_id).name %> </p>
+<p><b>University:</b> <%= link_to University.find_by(id: @user.university_id).name, university_path(@user.university_id) %> </p>
 <p><b>Graduation Year:</b> <%= @user.graduation_year %> </p>
 <p><b>Major:</b> <%= @user.major %> </p>
-<p><b>Current Location:</b> <%= Location.find_by(:id => @user.location_id).city%> </p>
+<p><b>Current Location:</b> <%= link_to Location.find_by(:id => @user.location_id).city, location_path(@user.location_id) %> </p>
 <p><b>Bio:</b> <%= @user.bio %> </p>
 <p><b>Interested in hanging out:</b> <%= @user.interested_in_hanging_out %> </p>
 <p><b>Willing to host:</b> <%= @user.interested_in_hosting %> </p>

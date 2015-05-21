@@ -29,7 +29,7 @@
 		<td><%= @university.name %></td>
 		<td><%= user.graduation_year %> </td>
 		<td><%= user.major %> </td>
-		<td><%= Location.find_by(id: user.location_id).city %></td>
+		<td><%= link_to Location.find_by(id: user.location_id).city, location_path(user.location_id) %></td>
 	</tr>
 	<% end %>
 	

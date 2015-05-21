@@ -26,7 +26,7 @@
 		<!--Retrieve and show the info of each user. Query database to find the user's details corresponding with the id-->
 		<td><%= link_to user.name, user_path(user.id) %></td>
 		<td><%= mail_to user.email,"#{user.email}"  %></td>
-		<td><%= University.find_by(id: user.university_id).name %></td>
+		<td><%= link_to University.find_by(id: user.university_id).name, university_path(user.university_id) %></td>
 		<td><%= user.graduation_year %> </td>
 		<td><%= user.major %> </td>
 		<td><%= @location.city %></td>

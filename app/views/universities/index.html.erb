@@ -11,7 +11,7 @@
 <p><%= link_to "If your university is not yet covered, create it now and kick off a new community!", "/universities/new" %></p>
 
 <%= form_tag universities_url, :method => "get" do %>
-	Search your university:
+	<b>Search your university:</b>
 	<%= text_field_tag :keyword %>
   	<%= submit_tag "Search" %>
 <% end %>
@@ -30,7 +30,7 @@
 	<tr>
 		<!--Retrieve and show the info of each uni. Query database to find the uni's details corresponding with the id-->
 		<td><%= link_to university.name, university_path(university.id) %></td>
-		<td><%= Location.find_by(id: university.location_id).city %></td>
+		<td><%= link_to Location.find_by(id: university.location_id).city, location_path(university.location_id) %></td>
 		<td><%= university.users.count %> </td>
 		<td><%= link_to "Edit", "/universities/#{university.id}/edit" %></td>
 	</tr>

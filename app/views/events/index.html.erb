@@ -11,7 +11,7 @@
 <p><%= link_to "Click here to create an own event!", "/events/new" %></p>
 
 <%= form_tag events_url, :method => "get" do %>
-	Search events:
+	<b>Search events:</b>
 	<%= text_field_tag :keyword %>
   	<%= submit_tag "Search" %>
 <% end %>
@@ -33,8 +33,8 @@
 	<tr>
 		<!--Retrieve and show the info of each event. Query database to find the event's details corresponding with the id-->
 		<td><%= link_to event.name, event_path(event.id) %></td>
-		<td><%= Location.find_by(id: event.location_id).city %></td>
-		<td><%= University.find_by(id: event.university_id).name %></td>
+		<td><%= link_to Location.find_by(id: event.location_id).city, location_path(event.location_id) %></td>
+		<td><%= link_to University.find_by(id: event.university_id).name, university_path(event.university_id) %></td>
 		<td><%= event.start_time %> </td>
 		<td><%= event.end_time %> </td>
 		<td><%= mail_to event.organizer_contact_email,"#{event.organizer_contact_email}"  %></td>
