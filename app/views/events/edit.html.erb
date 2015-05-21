@@ -1,28 +1,53 @@
-<%= form_tag "/universities/#{@university.id}", :method => 'patch' do %>
+<%= form_tag "/events/#{@event.id}", :method => 'patch' do %>
 
   <div>
     <label for="name">Name:</label>
-    <input size="80" name="name" id="name" value="<%= @university.name %>">
-  </div>
-
-  <div>
-    <label for="color">Color (Hex Code):</label>
-    <input size="7" name="color" id="color" value="<%= @university.color %>">
+    <input size="80" name="name" id="name" value="<%= @event.name %>">
   </div>
 
   <div>
 	<label>Location:</label>
 	<!--Search / query the location table in database to find location name for given id-->
-	<select name="location" value="<%= Location.find_by(:id => @university.location_id).city %>">
+	<select name="location" value="<%= Location.find_by(:id => @event.location_id).city %>">
 		<% @locations.each do |location| %> 
 		<option><%= location.city%></option>
 		<% end %>
 	</select>
-</div>
+  </div>
 
-  <input type="submit" name="commit" value="Update University">
+  <div>
+  <label>University:</label>
+  <!--Search / query the location table in database to find location name for given id-->
+  <select name="university" value="<%= University.find_by(:id => @event.university_id).name %>">
+    <% @universities.each do |university| %> 
+    <option><%= university.name%></option>
+    <% end %>
+  </select>
+  </div>
+
+  <div>
+    <label for="name">Adress:</label>
+    <input size="80" name="address" id="address" value="<%= @event.address %>">
+  </div>
+
+  <div>
+    <label for="name">Start Time:</label>
+    <input size="80" name="start_time" id="start_time" value="<%= @event.start_time %>">
+  </div>
+
+  <div>
+    <label for="name">End Time:</label>
+    <input size="80" name="end_time" id="end_time" value="<%= @event.end_time %>">
+  </div>
+
+   <div>
+    <label for="name">Organizer Contact Email:</label>
+    <input size="80" name="organizer_contact_email" id="organizer_contact_email" value="<%= @event.organizer_contact_email %>">
+  </div>
+
+  <input type="submit" name="commit" value="Update Event!">
 
 <% end %>
 
-
+<p><%= link_to "Back to events page", "/events" %> </p>
 
