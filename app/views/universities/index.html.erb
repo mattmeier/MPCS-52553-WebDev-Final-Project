@@ -1,0 +1,41 @@
+<% if cookies["university_id"].present? %>
+  <h3>Your browsing history</h3>
+
+  <p>
+    <%= University.find_by(id: cookies["university_id"]).name%>
+  </p>
+<% end %>
+
+<h2> Stay in touch with your former classmates from your alma mater! </h2>
+
+<p><%= link_to "If your university is not yet covered, create it now and kick off a new community!", "/universities/new" %></p>
+
+<%= form_tag universities_url, :method => "get" do %>
+	Search your university:
+	<%= text_field_tag :keyword %>
+  	<%= submit_tag "Search" %>
+<% end %>
+
+<h4> The universities covered so far include: </h4>
+<table class="table table-striped">
+	
+	<tr>
+		<th>Name</th>
+		<th>Location</th>
+		<th>Number of Users</th>
+		<th></th>
+	</tr>
+
+	<% @universities.each do |university| %>
+	<tr>
+		<!--Retrieve and show the info of each city. Query database to find the locations's details corresponding with the id-->
+		<td><%= link_to university.name, university_path(university.id) %></td>
+		<td><%= Location.find_by(id: university.location_id).city %></td>
+		<td><%= university.users.count %> </td>
+		<td><%= link_to "Edit", "/universities/#{university.id}/edit" %></td>
+	</tr>
+	<% end %>
+	
+</table>
+
+<p><%= link_to "Back to main page", "/" %> </p>

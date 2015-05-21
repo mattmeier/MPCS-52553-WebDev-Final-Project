@@ -1,0 +1,36 @@
+<h2><%= @university.name %></h2>
+
+<%= form_tag users_url, :method => "get" do %>
+	Find your classmates from <%= @university.name %> by name:
+	<%= text_field_tag :keyword %>
+  	<%= submit_tag "Search" %>
+<% end %>
+
+<h4> Our users from <%= @university.name %> include: </h4>
+<table class="table table-striped">
+	
+	<tr>
+		<th>Name</th>
+		<th>Email</th>
+		<th>University</th>
+		<th>Graduation Year</th>
+		<th>Major</th>
+		<th>Location</th>
+		<th></th>
+	</tr>
+
+	<% @users.each do |user| %>
+	<tr>
+		<!--Retrieve and show the info of each user. Query database to find the user's details corresponding with the id-->
+		<td><%= link_to user.name, user_path(user.id) %></td>
+		<td><%= mail_to user.email,"#{user.email}"  %></td>
+		<td><%= @university.name %></td>
+		<td><%= user.graduation_year %> </td>
+		<td><%= user.major %> </td>
+		<td><%= Location.find_by(id: user.location_id).city %></td>
+	</tr>
+	<% end %>
+	
+</table>
+
+<p><%= link_to "Back to universities main page", "/universities" %> </p>

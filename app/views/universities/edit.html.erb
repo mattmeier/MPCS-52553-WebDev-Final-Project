@@ -1,0 +1,28 @@
+<%= form_tag "/universities/#{@university.id}", :method => 'patch' do %>
+
+  <div>
+    <label for="name">Name:</label>
+    <input size="80" name="name" id="name" value="<%= @university.name %>">
+  </div>
+
+  <div>
+    <label for="color">Color (Hex Code):</label>
+    <input size="7" name="color" id="color" value="<%= @university.color %>">
+  </div>
+
+  <div>
+	<label>Location:</label>
+	<!--Search / query the location table in database to find location name for given id-->
+	<select name="location" value="<%= Location.find_by(:id => @university.location_id).city %>">
+		<% @locations.each do |location| %> 
+		<option><%= location.city%></option>
+		<% end %>
+	</select>
+</div>
+
+  <input type="submit" name="commit" value="Update University">
+
+<% end %>
+
+
+
