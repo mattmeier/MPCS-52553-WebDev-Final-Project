@@ -1,7 +1,9 @@
 <h2><%= @university.name %></h2>
 
+<br><%=@university.description%><br>
+
 <%= form_tag users_url, :method => "get" do %>
-	Find your classmates from <%= @university.name %> by name:
+	<b>Find your classmates from <%= @university.name %> by name:</b>
 	<%= text_field_tag :keyword %>
   	<%= submit_tag "Search" %>
 <% end %>

@@ -10,5 +10,6 @@ class Event < ActiveRecord::Base
     validates_presence_of :end_time
     validates_presence_of :university_id
     validates_presence_of :location_id
+    validates_presence_of :description
     validates_presence_of :organizer_contact_email
 end

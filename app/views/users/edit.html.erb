@@ -55,9 +55,9 @@
 </div>
 
 <div>
-	<label>Bio </label>
-  	<textarea name="bio" cols="80" rows="3"></textarea>
-</div>
+    <label>Bio </label>
+    <textarea name="bio" cols="80" rows="3"><%= @user.bio %></textarea>
+  </div>
 
 <p>
   	<%= radio_button_tag(:interested_in_hosting, "hosting") %>

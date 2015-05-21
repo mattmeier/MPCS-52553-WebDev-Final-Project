@@ -46,12 +46,14 @@ ActiveRecord::Schema.define(version: 0) do
   create_table "locations", force: :cascade do |t|
     t.string "city"
     t.string "state"
+    t.text   "description"
   end
 
   create_table "universities", force: :cascade do |t|
     t.string  "name"
     t.string  "color"
     t.integer "location_id"
+    t.text    "description"
   end
 
   add_index "universities", ["location_id"], name: "index_universities_on_location_id"

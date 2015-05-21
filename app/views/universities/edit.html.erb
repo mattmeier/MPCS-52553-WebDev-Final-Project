@@ -18,7 +18,12 @@
 		<option><%= location.city%></option>
 		<% end %>
 	</select>
-</div>
+  </div>
+
+  <div>
+    <label>Description: </label>
+    <textarea name="description" cols="80" rows="3"><%= @event.description %>"</textarea>
+  </div>
 
   <input type="submit" name="commit" value="Update University">
 

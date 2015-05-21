@@ -40,6 +40,11 @@
     <input size="80" name="end_time" id="end_time" value="<%= @event.end_time %>">
   </div>
 
+  <div>
+    <label>Description: </label>
+    <textarea name="description" cols="80" rows="3"><%= @event.description %>"</textarea>
+  </div>
+
    <div>
     <label for="name">Organizer Contact Email:</label>
     <input size="80" name="organizer_contact_email" id="organizer_contact_email" value="<%= @event.organizer_contact_email %>">

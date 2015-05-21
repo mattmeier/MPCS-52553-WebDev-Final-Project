@@ -5,5 +5,6 @@ class University < ActiveRecord::Base
     
     validates :name, :uniqueness => true, :allow_nil => false
     validates_presence_of :color
+    validates_presence_of :description
     validates_presence_of :location
 end

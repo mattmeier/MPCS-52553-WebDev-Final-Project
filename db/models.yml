@@ -13,11 +13,13 @@ User
 Location
   city: string
   state: string
+  description: text
 
 University
   name: string
   color: string
   location_id: integer
+  description: text
 
 Friendship
   requester_id: integer

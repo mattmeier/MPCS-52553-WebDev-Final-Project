@@ -1,7 +1,9 @@
 <h2><%= @location.city %>, <%= @location.state %></h2>
 
+<br><%=@location.description%><br>
+
 <%= form_tag users_url, :method => "get" do %>
-	Find your classmates in <%= @location.city %> by name:
+	<b>Find your classmates in <%= @location.city %> by name:</b>
 	<%= text_field_tag :keyword %>
   	<%= submit_tag "Search" %>
 <% end %>
