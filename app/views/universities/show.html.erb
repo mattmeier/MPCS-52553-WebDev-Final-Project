@@ -1,23 +1,23 @@
 <style>
-  img {
-    float: center;
-    box-shadow: none;
-    height: "200px";
-  }
+	img {
+		float: center;
+		box-shadow: none;
+		height: "200px";
+	}
 </style>
 
 <h2><%= @university.name %></h2>
 
 <div>
-<%= image_tag @university.logo_url, height: '200' %>
+	<%= image_tag @university.logo_url, height: '200' %>
 </div>
 
 <br><%=@university.description%><br>
 
 <%= form_tag users_url, :method => "get" do %>
-	<b>Find your classmates from <%= @university.name %> by name:</b>
-	<%= text_field_tag :keyword %>
-  	<%= submit_tag "Search" %>
+<b>Find your classmates from <%= @university.name %> by name:</b>
+<%= text_field_tag :keyword %>
+<%= submit_tag "Search" %>
 <% end %>
 
 <h4> Our users from <%= @university.name %> include: </h4>

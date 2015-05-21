@@ -1,51 +1,51 @@
 <h2>Add an Event</h2>
 <h3>Create a New Events Page:</h3>
 <% if @event.errors.any? %>
-	<ul class="errors">
-		<% @event.errors.full_messages.each do |msg| %>
-			<li><%= msg %></li>
-		<% end %>
- 	</ul>
+<ul class="errors">
+	<% @event.errors.full_messages.each do |msg| %>
+	<li><%= msg %></li>
+	<% end %>
+</ul>
 <% end %>
 
 <%= form_tag "/events", :method => 'post' do %>
 
-	<p>
-		<%= label_tag :name %>
-		<%= text_field_tag :name %>
-	</p>
+<p>
+	<%= label_tag :name %>
+	<%= text_field_tag :name %>
+</p>
 
-	<p>
-		<label>Location/City </label>
-		<select name="location">
-			<!--Loop through all locations and get their names. Later on, we plan on allowing for inputing new location, if it is not already there-->
-			<% @locations.each do |location| %> 
-			<option><%= location.city%></option>
-			<% end %>
-		</select>
-	</p>
+<p>
+	<label>Location/City </label>
+	<select name="location">
+		<!--Loop through all locations and get their names. Later on, we plan on allowing for inputing new location, if it is not already there-->
+		<% @locations.each do |location| %> 
+		<option><%= location.city%></option>
+		<% end %>
+	</select>
+</p>
 
-	<p>
-		<%= label_tag :start_time %>
-		<%= text_field_tag :start_time %>
-	</p>
+<p>
+	<%= label_tag :start_time %>
+	<%= text_field_tag :start_time %>
+</p>
 
-	<p>
-		<%= label_tag :end_time %>
-		<%= text_field_tag :end_time %>
-	</p>
+<p>
+	<%= label_tag :end_time %>
+	<%= text_field_tag :end_time %>
+</p>
 
-	<p>
-		<label>Description</label>
-  		<textarea name="description" cols="80" rows="3"></textarea>
-  	</p>
+<p>
+	<label>Description</label>
+	<textarea name="description" cols="80" rows="3"></textarea>
+</p>
 
-	<p>
-		<%= label_tag :organizer_contact_email %>
-		<%= text_field_tag :organizer_contact_email  %>
-	</p>
-	
-	<%= submit_tag "Create Event Page!" %>
+<p>
+	<%= label_tag :organizer_contact_email %>
+	<%= text_field_tag :organizer_contact_email  %>
+</p>
+
+<%= submit_tag "Create Event Page!" %>
 
 <% end %>
 <p><%= link_to "Back to events main page", "/events" %> </p>

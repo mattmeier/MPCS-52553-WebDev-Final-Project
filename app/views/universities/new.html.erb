@@ -1,46 +1,46 @@
 <h2>Add a University</h2>
 <h3>Create a New University Profile:</h3>
 <% if @university.errors.any? %>
-	<ul class="errors">
-		<% @university.errors.full_messages.each do |msg| %>
-			<li><%= msg %></li>
-		<% end %>
- 	</ul>
+<ul class="errors">
+	<% @university.errors.full_messages.each do |msg| %>
+	<li><%= msg %></li>
+	<% end %>
+</ul>
 <% end %>
 
 <%= form_tag "/universities", :method => 'post' do %>
 
-	<p>
-		<%= label_tag :name %>
-		<%= text_field_tag :name %>
-	</p>
+<p>
+	<%= label_tag :name %>
+	<%= text_field_tag :name %>
+</p>
 
-	<p>
-		<%= label_tag :color_hex_code %>
-		<%= text_field_tag :color %>
-	</p>
+<p>
+	<%= label_tag :color_hex_code %>
+	<%= text_field_tag :color %>
+</p>
 
-	<p>
-		<label>Location </label>
-		<select name="location">
-			<!--Loop through all locations and get their names. Later on, we plan on allowing for inputing new location, if it is not already there-->
-			<% @locations.each do |location| %> 
-			<option><%= location.city%></option>
-			<% end %>
-		</select>
-	</p>
+<p>
+	<label>Location </label>
+	<select name="location">
+		<!--Loop through all locations and get their names. Later on, we plan on allowing for inputing new location, if it is not already there-->
+		<% @locations.each do |location| %> 
+		<option><%= location.city%></option>
+		<% end %>
+	</select>
+</p>
 
-	<p>
-		<label>Description</label>
-  		<textarea name="description" cols="80" rows="3"></textarea>
-  	</p>
+<p>
+	<label>Description</label>
+	<textarea name="description" cols="80" rows="3"></textarea>
+</p>
 
-  	<p>
-		<%= label_tag :url_to_logo %>
-		<%= text_field_tag :logo_url %>
-	</p>
-	
-	<%= submit_tag "Create University Profile!" %>
+<p>
+	<%= label_tag :url_to_logo %>
+	<%= text_field_tag :logo_url %>
+</p>
+
+<%= submit_tag "Create University Profile!" %>
 
 
 <% end %>
