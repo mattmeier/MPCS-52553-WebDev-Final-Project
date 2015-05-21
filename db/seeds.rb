@@ -58,3 +58,4 @@ Event.create(id: 5, name: 'Annual Washington Harvard-Club Summer BBQ', universit
 Event.create(id: 6, name: 'Columbia Alumni River Cruise', university_id: 7, location_id: 6, start_time: DateTime.new(2015,7,22,16), end_time: DateTime.new(2015,7,22,19), description: 'Join us for an awesome river cruise. More details to be announced soon, but save the date!', organizer_id: 7)
 Event.create(id: 7, name: 'Berkeley New York After-Work Meetup', university_id: 7, location_id: 2, start_time: DateTime.new(2015,7,1,19), end_time: DateTime.new(2015,7,1,22), description: 'Come along to our monthly after-work meetup. This is a great way to stay in touch with old Berkeley friends and meet alumni in the city.', organizer_id: 3)
 
+puts "Seeded succesfully."

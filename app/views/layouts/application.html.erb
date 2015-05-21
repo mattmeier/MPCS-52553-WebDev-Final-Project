@@ -1,14 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Final</title>
+  <title>StayInTouch</title>
+  <%= stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+
 </head>
 <body>
 
-<%= yield %>
+  <div class="container">
+
+    <h1><%= link_to "StayInTouch", "/" %>
+
+      <small><%= link_to "Users", '/users' %></small>
+      <small><%= link_to "Locations", '/locations' %></small>
+      <small><%= link_to "Universities", '/universities' %></small>
+      <small><%= link_to "Events", '/events' %></small>
+
+      <% if cookies["user_id"].present? %>
+        <small>Howdy, <%= User.find_by(id: cookies["user_id"]).email %></small>
+        <small><%= link_to "Sign Out", '/logout' %></small>
+      <% else %>
+          <small><%= link_to "Sign Up", '/signup' %></small>
+          <small><%= link_to "Sign In", '/login' %></small>
+
+      <% end %>
+    </h1>
+
+    <% if notice.present? %>
+      <div class="alert alert-info"%>
+        <%= notice %>
+      </div>
+    <% end %>
+
+    <%= yield %>
+
+  </div>
 
 </body>
 </html>

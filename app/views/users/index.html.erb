@@ -1,18 +1,27 @@
-<h1>Welcome to StayInTouch </h1>
+<% if cookies["user_id"].present? %>
+  <h3>Your browsing history</h3>
 
-<%= link_to "Create a New User Profile", "/users/new" %>
+  <p>
+    <%= User.find_by(id: cookies["user_id"]).name%>
+  </p>
+<% end %>
 
-<br><br>
+<h2>Welcome to StayInTouch! </h2>
+<br>
+<h4> Stay in touch with your former classmates! </h4>
 
-<h3> Stay in touch with your former classmates! </h3>
+<p> Join our growing community of <%= @users.count %> users.<br>
+<%= link_to "Sign up and create a new user profile now!", "/users/new" %></p>
+
 
 <%= form_tag users_url, :method => "get" do %>
-
-  <%= text_field_tag :keyword %>
-  <%= submit_tag "Search classmate by name" %>
+	Find your classmates by name:
+	<%= text_field_tag :keyword %>
+  	<%= submit_tag "Search" %>
 
 <% end %>
-<h4> Users: </h4>
+
+<h4> Our users include alumni from all over the US: </h4>
 <table class="table table-striped">
 	
 	<tr>

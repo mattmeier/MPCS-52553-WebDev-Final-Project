@@ -67,7 +67,6 @@ class UsersController < ApplicationController
     
     #Edit the user's details
     def edit
-        #@user = User.find_by(id: params[:id])
         @universities = University.all
         @locations = Location.all
     end
@@ -83,8 +82,7 @@ class UsersController < ApplicationController
     def update
         @universities = University.all
         @locations = Location.all
-        
-        #@user = User.find_by(id: params[:id])
+    
         @user.name = params[:name]
         @user.email = params[:email]
         @user.password = params[:password]
