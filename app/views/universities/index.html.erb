@@ -28,7 +28,7 @@
 
 	<% @universities.each do |university| %>
 	<tr>
-		<!--Retrieve and show the info of each city. Query database to find the locations's details corresponding with the id-->
+		<!--Retrieve and show the info of each uni. Query database to find the uni's details corresponding with the id-->
 		<td><%= link_to university.name, university_path(university.id) %></td>
 		<td><%= Location.find_by(id: university.location_id).city %></td>
 		<td><%= university.users.count %> </td>

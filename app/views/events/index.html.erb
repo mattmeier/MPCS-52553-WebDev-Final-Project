@@ -1,0 +1,47 @@
+<% if cookies["event_id"].present? %>
+  <h3>Your browsing history</h3>
+
+  <p>
+    <%= Event.find_by(id: cookies["event_id"]).name%>
+  </p>
+<% end %>
+
+<h2> Check out some of our events! </h2>
+
+<p><%= link_to "Click here to create an own event!", "/events/new" %></p>
+
+<%= form_tag events_url, :method => "get" do %>
+	Search events:
+	<%= text_field_tag :keyword %>
+  	<%= submit_tag "Search" %>
+<% end %>
+
+<h4> Currently scheduled events include: </h4>
+<table class="table table-striped">
+	
+	<tr>
+		<th>Name</th>
+		<th>Location</th>
+		<th>University</th>
+		<th>Start Time</th>
+		<th>End Time</th>
+		<th>Organizer Email</th>
+		<th></th>
+	</tr>
+
+	<% @events.each do |event| %>
+	<tr>
+		<!--Retrieve and show the info of each event. Query database to find the event's details corresponding with the id-->
+		<td><%= link_to event.name, event_path(event.id) %></td>
+		<td><%= Location.find_by(id: event.location_id).city %></td>
+		<td><%= University.find_by(id: event.university_id).name %></td>
+		<td><%= event.start_time %> </td>
+		<td><%= event.end_time %> </td>
+		<td><%= mail_to event.organizer_contact_email,"#{event.organizer_contact_email}"  %></td>
+		<td><%= link_to "Edit", "/events/#{event.id}/edit" %></td>
+	</tr>
+	<% end %>
+	
+</table>
+
+<p><%= link_to "Back to main page", "/" %> </p>

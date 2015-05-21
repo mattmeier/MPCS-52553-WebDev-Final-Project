@@ -28,11 +28,11 @@ ActiveRecord::Schema.define(version: 0) do
     t.datetime "start_time"
     t.datetime "end_time"
     t.text     "description"
-    t.integer  "organizer_id"
+    t.string   "organizer_contact_email"
+    t.string   "address"
   end
 
   add_index "events", ["location_id"], name: "index_events_on_location_id"
-  add_index "events", ["organizer_id"], name: "index_events_on_organizer_id"
   add_index "events", ["university_id"], name: "index_events_on_university_id"
 
   create_table "friendships", force: :cascade do |t|

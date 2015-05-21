@@ -27,10 +27,11 @@ Event
   name: string
   university_id: integer
   location_id: integer
+  address: string
   start_time: datetime
   end_time: datetime
   description: text
-  organizer_id: integer
+  organizer_contact_email: string
 
 EventSignup
   event_id: integer
