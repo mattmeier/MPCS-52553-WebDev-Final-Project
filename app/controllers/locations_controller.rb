@@ -21,6 +21,7 @@ class LocationsController < ApplicationController
         @location = Location.new
         @location.city = params[:city]
         @location.state = params[:state]
+        @location.description = params[:description]
         if @location.save
             redirect_to locations_url, notice: "Thanks for adding a new location."
         else
@@ -52,6 +53,7 @@ class LocationsController < ApplicationController
     def update
         @location.city = params[:city]
         @location.state = params[:state]
+        @location.description = params[:description]
         if @location.save
             redirect_to location_url, notice: "Successfully edited location information."
         else
