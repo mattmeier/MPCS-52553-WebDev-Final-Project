@@ -18,13 +18,15 @@ class EventsController < ApplicationController
     
     #Create a new event and insert the new user into table, based on input parameters
     def create
+        @locations = Location.all
+        @universities = University.all
         @event = Event.new
         @event.name = params[:name]
         @event.university_id = University.find_by(:name => params[:university]).id
         @event.location_id = Location.find_by(:city => params[:location]).id
         @event.address = params[:address]
-        @event.start_time = params[:start_time]
-        @event.end_time = params[:end_time]
+        @event.start_time = DateTime.strptime(params[:start_time], '%m/%d/%Y %I:%M %p')
+        @event.end_time = DateTime.strptime(params[:end_time], '%m/%d/%Y %I:%M %p')
         @event.description = params[:description]
         @event.organizer_contact_email = params[:organizer_contact_email]
         if @event.save

@@ -32,3 +32,6 @@ p {
   color: red;
   font-weight: bold;
 }
+
+*= require bootstrap
+*= require bootstrap-datetimepicker

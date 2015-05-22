@@ -16,6 +16,11 @@
 </p>
 
 <p>
+	<%= label_tag :address %>
+	<%= text_field_tag :address %>
+</p>
+
+<p>
 	<label>Location/City </label>
 	<select name="location">
 		<!--Loop through all locations and get their names. Later on, we plan on allowing for inputing new location, if it is not already there-->
@@ -26,13 +31,13 @@
 </p>
 
 <p>
-	<%= label_tag :start_time %>
-	<%= text_field_tag :start_time %>
-</p>
-
-<p>
-	<%= label_tag :end_time %>
-	<%= text_field_tag :end_time %>
+	<label>University </label>
+	<select name="university">
+		<!--Loop through all locations and get their names. Later on, we plan on allowing for inputing new location, if it is not already there-->
+		<% @universities.each do |university| %> 
+		<option><%= university.name%></option>
+		<% end %>
+	</select>
 </p>
 
 <p>
@@ -44,6 +49,44 @@
 	<%= label_tag :organizer_contact_email %>
 	<%= text_field_tag :organizer_contact_email  %>
 </p>
+
+<div class="container">
+    <div class='col-md-5'>
+    <b>Start Time</b>
+        <div class="form-group">
+            <div class='input-group date' id='datetimepicker6'>
+                <input type='text' class="form-control" name="start_time"/>
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class='col-md-5'>
+     <b>End Time</b>
+        <div class="form-group">
+            <div class='input-group date' id='datetimepicker7'>
+            	
+                <input type='text' class="form-control" name="end_time"/>
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker6').datetimepicker();
+        $('#datetimepicker7').datetimepicker();
+        $("#datetimepicker6").on("dp.change", function (e) {
+            $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+        });
+        $("#datetimepicker7").on("dp.change", function (e) {
+            $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+        });
+    });
+</script>
 
 <%= submit_tag "Create Event Page!" %>
 
