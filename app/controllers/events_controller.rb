@@ -11,16 +11,19 @@ class EventsController < ApplicationController
         if params["keyword"].present?
             location_ids = Location.where("city LIKE ?", "%#{params["keyword"]}")
             @events = Event.where(:location_id => location_ids)
+        elsif params["page"].present?
+            @events = Event.limit(100).offset((params["page"].to_i - 1) * 100)
+            @events = @events.order('name asc')
         else
-            @events = Event.all
-            @events = Event.order('name asc')
+            @events = Event.limit(100)
+            @events = @events.order('name asc')
         end
     end
     
     #Create a new event and insert the new user into table, based on input parameters
     def create
-        @locations = Location.all
-        @universities = University.all
+        @universities = University.limit(2000) # we do not expect to exceed universities to be more than 2000
+        @locations = Location.limit(2000) # we do not expect to exceed locations to be more than 2000
         @event = Event.new
         @event.name = params[:name]
         @event.university_id = University.find_by(:name => params[:university]).id
@@ -48,14 +51,14 @@ class EventsController < ApplicationController
     
     #Edit the Event's details
     def edit
-        @locations = Location.all
-        @universities = University.all
+        @universities = University.limit(2000) # we do not expect to exceed universities to be more than 2000
+        @locations = Location.limit(2000) # we do not expect to exceed locations to be more than 2000
     end
     
     def new
         cookies.delete("event_id")
-        @locations = Location.all
-        @universities = University.all
+        @universities = University.limit(2000) # we do not expect to exceed universities to be more than 2000
+        @locations = Location.limit(2000) # we do not expect to exceed locations to be more than 2000
         @event = Event.new
         render "new"
     end

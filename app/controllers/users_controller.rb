@@ -10,18 +10,21 @@ class UsersController < ApplicationController
     def index
         if params["keyword"].present?
             @users = User.where("name LIKE ?", "%#{params["keyword"]}")
+        elsif params["page"].present?
+            @users = User.limit(100).offset((params["page"].to_i - 1) * 100)
+            @users = @users.order('name asc')
         else
-            @users = User.all
-            @users = User.order('name asc')
+            @users = User.limit(100)
+            @users = @users.order('name asc')
         end
-        @universities = University.all
-        @locations = Location.all
+        @universities = University.limit(2000) # we do not expect to exceed universities to be more than 2000
+        @locations = Location.limit(2000) # we do not expect to exceed locations to be more than 2000
     end
     
     #Create a new user and insert the new user into table, based on input parameters
     def create
-        @universities = University.all
-        @locations = Location.all
+        @universities = University.limit(2000) # we do not expect to exceed universities to be more than 2000
+        @locations = Location.limit(2000) # we do not expect to exceed locations to be more than 2000
         
         @user = User.new
         @user.name = params[:name]
@@ -68,22 +71,22 @@ class UsersController < ApplicationController
     
     #Edit the user's details
     def edit
-        @universities = University.all
-        @locations = Location.all
+        @universities = University.limit(2000) # we do not expect to exceed universities to be more than 2000
+        @locations = Location.limit(2000) # we do not expect to exceed locations to be more than 2000
     end
     
     def new
         cookies.delete("user_id")
         @user = User.new
-        @universities = University.all
-        @locations = Location.all
+        @universities = University.limit(2000) # we do not expect to exceed universities to be more than 2000
+        @locations = Location.limit(2000) # we do not expect to exceed locations to be more than 2000
         render "new"
     end
     
     #Update the database
     def update
-        @universities = University.all
-        @locations = Location.all
+        @universities = University.limit(2000) # we do not expect to exceed universities to be more than 2000
+        @locations = Location.limit(2000) # we do not expect to exceed locations to be more than 2000
     
         @user.name = params[:name]
         @user.email = params[:email]

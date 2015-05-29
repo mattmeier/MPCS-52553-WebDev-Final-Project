@@ -10,15 +10,18 @@ class UniversitiesController < ApplicationController
     def index
         if params["keyword"].present?
             @universities = University.where("name LIKE ?", "%#{params["keyword"]}")
+        elsif params["page"].present?
+            @universities = University.limit(100).offset((params["page"].to_i - 1) * 100)
+            @universities = @universities.order('name asc')
         else
-            @universities = University.all
-            @universities = University.order('name asc')
+            @universities = University.limit(100)
+            @universities = @universities.order('name asc')
         end
     end
     
     #Create a new university and insert the new user into table, based on input parameters
     def create
-        @locations = Location.all
+        @locations = Location.limit(2000) # we do not expect to exceed locations to be more than 2000
         @university = University.new
         @university.name = params[:name]
         @university.description = params[:description]
@@ -43,12 +46,12 @@ class UniversitiesController < ApplicationController
     
     #Edit the University's details
     def edit
-        @locations = Location.all
+        @locations = Location.limit(2000) # we do not expect to exceed locations to be more than 2000
     end
     
     def new
         cookies.delete("university_id")
-        @locations = Location.all
+        @locations = Location.limit(2000) # we do not expect to exceed locations to be more than 2000
         @university = University.new
         render "new"
     end

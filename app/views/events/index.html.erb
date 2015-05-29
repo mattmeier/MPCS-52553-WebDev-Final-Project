@@ -11,7 +11,7 @@
 <p><%= link_to "Click here to create an own event!", "/events/new" %></p>
 
 <%= form_tag events_url, :method => "get" do %>
-	<b>Search events:</b>
+	<b>Search events by location:</b>
 	<%= text_field_tag :keyword %>
   	<%= submit_tag "Search" %>
 <% end %>
