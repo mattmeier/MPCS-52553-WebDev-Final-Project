@@ -51,7 +51,6 @@ ActiveRecord::Schema.define(version: 0) do
 
   create_table "universities", force: :cascade do |t|
     t.string  "name"
-    t.string  "color"
     t.integer "location_id"
     t.text    "description"
     t.string  "logo_url"

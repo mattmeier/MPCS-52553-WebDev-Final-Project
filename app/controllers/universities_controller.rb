@@ -21,7 +21,6 @@ class UniversitiesController < ApplicationController
         @locations = Location.all
         @university = University.new
         @university.name = params[:name]
-        @university.color = params[:color]
         @university.description = params[:description]
         @university.logo_url = params[:logo_url]
         @university.location_id = Location.find_by(:city => params[:location]).id
@@ -57,7 +56,6 @@ class UniversitiesController < ApplicationController
     #Update the database
     def update
         @university.name = params[:name]
-        @university.color = params[:color]
         @university.location_id = Location.find_by(:city => params[:location]).id
         @university.description = params[:description]
         @university.logo_url = params[:logo_url]

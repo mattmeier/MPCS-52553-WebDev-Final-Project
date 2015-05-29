@@ -6,11 +6,6 @@
   </div>
 
   <div>
-    <label for="color">Color (Hex Code):</label>
-    <input size="7" name="color" id="color" value="<%= @university.color %>">
-  </div>
-
-  <div>
 	<label>Location:</label>
 	<!--Search / query the location table in database to find location name for given id-->
 	<select name="location" value="<%= Location.find_by(:id => @university.location_id).city %>">

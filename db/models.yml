@@ -17,7 +17,6 @@ Location
 
 University
   name: string
-  color: string
   location_id: integer
   description: text
   logo_url: string
