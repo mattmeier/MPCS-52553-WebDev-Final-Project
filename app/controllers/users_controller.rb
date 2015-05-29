@@ -66,8 +66,6 @@ class UsersController < ApplicationController
     
     #Show user details
     def show
-        cookies["user_id"] = @user.id
-        
         if @user == nil
             redirect_to users_url, notice: "User not found."
         end

@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+    has_secure_password
     has_many :event_signups
     has_many :events, through: :event_signups
     has_and_belongs_to_many :friendships

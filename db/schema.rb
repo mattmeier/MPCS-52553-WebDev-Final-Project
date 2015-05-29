@@ -60,7 +60,6 @@ ActiveRecord::Schema.define(version: 0) do
 
   create_table "users", force: :cascade do |t|
     t.string  "email"
-    t.string  "password"
     t.integer "university_id"
     t.integer "graduation_year"
     t.string  "major"
@@ -69,6 +68,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.string  "interested_in_hosting"
     t.string  "interested_in_hanging_out"
     t.string  "name"
+    t.string  "password_digest"
   end
 
   add_index "users", ["location_id"], name: "index_users_on_location_id"

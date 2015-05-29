@@ -1,7 +1,7 @@
 User
   name: string
   email: string
-  password: string
+  password_digest: string
   university_id: integer
   graduation_year: integer
   major: string

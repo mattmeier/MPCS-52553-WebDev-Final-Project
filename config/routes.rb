@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     
     get "/login" => 'sessions#new'
     post '/sessions' => 'sessions#create'
+
+    delete "/logout" => 'sessions#destroy'
       
     #########################################################
     # The "Golden 7" for accessing the "users" resource
