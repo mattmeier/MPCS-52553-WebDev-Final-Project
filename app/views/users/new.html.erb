@@ -33,7 +33,10 @@
 			<option><%= university.name%></option>
 			<% end %>
 		</select>
+		<%= link_to "If your university is not yet covered, create it now and kick off a new alumni community!", "/universities/new" %>
 	</p>
+
+	
 
 	<p>
 		<%= label_tag :graduation_year%>
@@ -53,6 +56,7 @@
 			<option><%= location.city%></option>
 			<% end %>
 		</select>
+		<%= link_to "If your location is not yet covered, add it now and start a new local community!", "/locations/new" %>
 	</p>
 
 	<p>
