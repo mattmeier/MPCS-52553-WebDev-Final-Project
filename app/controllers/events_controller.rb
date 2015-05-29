@@ -9,7 +9,8 @@ class EventsController < ApplicationController
     #Retrieve and display info of all events
     def index
         if params["keyword"].present?
-            @events = Event.where("name LIKE ?", "%#{params["keyword"]}")
+            location_ids = Location.where("city LIKE ?", "%#{params["keyword"]}")
+            @events = Event.where(:location_id => location_ids)
         else
             @events = Event.all
             @events = Event.order('name asc')
