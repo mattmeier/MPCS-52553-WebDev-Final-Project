@@ -11,11 +11,15 @@ class UsersController < ApplicationController
         if params["keyword"].present?
             @users = User.where("name LIKE ?", "%#{params["keyword"]}")
         elsif params["page"].present?
+            @page = params["page"].to_i + 1
             @users = User.limit(100).offset((params["page"].to_i - 1) * 100)
             @users = @users.order('name asc')
+            @user_count = @users.count
         else
+            @page = 2
             @users = User.limit(100)
             @users = @users.order('name asc')
+            @user_count = @users.count
         end
         @universities = University.limit(2000) # we do not expect to exceed universities to be more than 2000
         @locations = Location.limit(2000) # we do not expect to exceed locations to be more than 2000

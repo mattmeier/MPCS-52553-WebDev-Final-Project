@@ -45,4 +45,10 @@
 	
 </table>
 
+<% if @event_count >= 100 %>
+  <p>
+    <%= link_to "Next", "/events/?page=#{@page}" %>
+  </p>
+<% end %>
+
 <p><%= link_to "Back to main page", "/" %> </p>

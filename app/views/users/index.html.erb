@@ -46,3 +46,9 @@
 	<% end %>
 	
 </table>
+
+<% if @user_count >= 100 %>
+  <p>
+    <%= link_to "Next", "/users/?page=#{@page}" %>
+  </p>
+<% end %>

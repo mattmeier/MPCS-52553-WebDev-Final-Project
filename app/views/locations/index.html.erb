@@ -40,4 +40,10 @@
 	
 </table>
 
+<% if @location_count >= 100 %>
+  <p>
+    <%= link_to "Next", "/locations/?page=#{@page}" %>
+  </p>
+<% end %>
+
 <p><%= link_to "Back to main page", "/" %> </p>
