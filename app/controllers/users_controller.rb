@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     #Retrieve and display main info of all users
     def index
         if params["keyword"].present?
-            @users = User.where("name LIKE '%#{params["keyword"]}%'")
+            @users = User.where("name LIKE ?", "%#{params["keyword"]}")
         else
             @users = User.all
             @users = User.order('name asc')

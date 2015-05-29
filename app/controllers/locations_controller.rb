@@ -9,7 +9,7 @@ class LocationsController < ApplicationController
     #Retrieve and display info of all locations
     def index
         if params["keyword"].present?
-            @locations = Location.where("city LIKE '%#{params["keyword"]}%' OR state LIKE '%#{params["keyword"]}%'")
+            @locations = Location.where("city LIKE ?", "%#{params["keyword"]}")
         else
             @locations = Location.all
             @locations = Location.order('city asc')

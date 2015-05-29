@@ -9,7 +9,7 @@ class UniversitiesController < ApplicationController
     #Retrieve and display info of all universitys
     def index
         if params["keyword"].present?
-            @universities = University.where("name LIKE '%#{params["keyword"]}%'")
+            @universities = University.where("name LIKE ?", "%#{params["keyword"]}")
         else
             @universities = University.all
             @universities = University.order('name asc')
