@@ -1,16 +1,19 @@
-<% if cookies["user_id"].present? %>
-  <h3>Your browsing history</h3>
-
-  <p>
-    <%= User.find_by(id: cookies["user_id"]).name%>
-  </p>
+<% if cookies["user_ids"].present? %>
+	<h4>You visited the following users before:</h4>
+ 	<% cookies["user_ids"].split.each do |user_id| %>
+		<%= link_to "#{User.find_by(id: user_id).name}", user_path(user_id) %> <br>
+	<% end %>
+	<p><%= link_to "Clear Recent History", '/history/clear' %></p>
 <% end %>
+
+
 
 <h2> Stay in touch with your former classmates! </h2>
 
-<p> Join our growing community of <%= @users.count %> users. <br>
-<%= link_to "Sign up and create a new user profile now!", "/users/new" %></p>
-
+<% if cookies["user_id"].blank? %>
+	<p> Join our growing community of <%= @users.count %> users. <br>
+	<%= link_to "Sign up and create a new user profile now!", "/users/new" %></p>
+<% end %>
 
 <%= form_tag users_url, :method => "get" do %>
 	<b>Find your classmates by name:</b>
