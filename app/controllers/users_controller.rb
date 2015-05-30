@@ -1,6 +1,15 @@
 class UsersController < ApplicationController
     
+    before_action :authorize, only: [:show]
     before_action :find_user, :only => [:show, :edit, :update, :destroy]
+
+
+    def authorize
+    #    @user = User.find_by(id: params[:id])
+    #    if @user.blank? || session[:user_id] != @user.id
+    #      redirect_to root_url, notice: "Nice try!"
+    #    end
+    end 
     
     def find_user
         @user = User.find_by(id: params["id"])
@@ -27,10 +36,14 @@ class UsersController < ApplicationController
     
     #Create a new user and insert the new user into table, based on input parameters
     def create
+        if cookies["user_ids"].present?
+            cookies.delete("user_ids")
+        end
         @universities = University.limit(2000) # we do not expect to exceed universities to be more than 2000
         @locations = Location.limit(2000) # we do not expect to exceed locations to be more than 2000
         
-        @user = User.new
+        h = params.permit(:email, :password)
+        @user = User.new(h)
         @user.name = params[:name]
         @user.email = params[:email]
         @user.password = params[:password]
@@ -68,6 +81,11 @@ class UsersController < ApplicationController
     def show
         if @user == nil
             redirect_to users_url, notice: "User not found."
+        else
+            cookies["user_ids"] ||= ""
+            if !cookies['user_ids'].include?(@user.id.to_s)
+                cookies["user_ids"] += "#{@user.id} "
+            end
         end
     end
     
@@ -78,7 +96,6 @@ class UsersController < ApplicationController
     end
     
     def new
-        cookies.delete("user_id")
         @user = User.new
         @universities = University.limit(2000) # we do not expect to exceed universities to be more than 2000
         @locations = Location.limit(2000) # we do not expect to exceed locations to be more than 2000
@@ -123,6 +140,8 @@ class UsersController < ApplicationController
     
     #Delete user from database
     def destroy
+        cookies.delete("user_id")
+        cookies.delete("user_ids")
         @user.delete
         redirect_to users_url
     end
