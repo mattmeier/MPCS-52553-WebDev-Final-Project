@@ -1,14 +1,13 @@
 class UsersController < ApplicationController
     
-    before_action :authorize, only: [:show]
+    before_action :authorize, only: [:edit, :update, :destroy] # only allow index and show for other users, but not edit, update and destroy
     before_action :find_user, :only => [:show, :edit, :update, :destroy]
 
-
     def authorize
-        #@user = User.find_by(id: params[:id])
-        #if @user.blank? || session[:user_id] != @user.id
-        #  redirect_to root_url, notice: "Nice try!"
-        #end
+        @user = User.find_by(id: params[:id])
+        if @user.blank? || session[:user_id] != @user.id
+          redirect_to root_url, notice: "Nice try!"
+        end
     end 
     
     def find_user
@@ -37,7 +36,7 @@ class UsersController < ApplicationController
     
     #Create a new user and insert the new user into table, based on input parameters
     def create
-        if cookies["user_ids"].present?
+        if cookies["user_ids"].present? # throw out old cookies from old user profiles
             cookies.delete("user_ids")
         end
         @universities = University.limit(2000) # we do not expect to exceed universities to be more than 2000
