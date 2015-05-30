@@ -33,7 +33,7 @@ class EventsignupsController < ApplicationController
     def destroy
         @eventsignup = EventSignup.find_by(event_id: params["event_id"], user_id: session[:user_id])
         @eventsignup.delete
-        redirect_to "/events/#{@eventsignup.event_id}", notice: "Event signup deleted."
+        redirect_to "/events/#{@eventsignup.event_id}", notice: "Event signup canceled."
     end
     
 end
