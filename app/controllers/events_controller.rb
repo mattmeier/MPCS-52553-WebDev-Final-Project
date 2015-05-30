@@ -70,6 +70,7 @@ class EventsController < ApplicationController
         else 
             user_ids = EventSignup.where(event_id: @event.id).limit(1000).pluck(:user_id) # we do not expect more than 1000 people to sign up for an event
             @users = User.where(id: user_ids) 
+            @logged_in_user_attending = @users.include?(User.find_by(id: session["user_id"])) 
         end
     end
     
