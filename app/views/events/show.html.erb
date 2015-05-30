@@ -13,7 +13,11 @@
 	<% end %>
 <% end %>
 
-<p><%= link_to "Sign up for this event!", "/eventsignups/#{@event.id}/", :method => 'post'  %> </p>
+<% if User.find_by(id: session["user_id"]).present? %> 
+	<p><%= link_to "Sign up for this event!", "/eventsignups/#{@event.id}/", :method => 'post'  %> </p>
+<% else %>
+	<p><%= link_to "Log in to sign up for the event!", "/login" %></p>
+<% end %>
 
 <h4 style="clear:both; margin-top: 60px">These users have already signed up for the event:</h4>
 
