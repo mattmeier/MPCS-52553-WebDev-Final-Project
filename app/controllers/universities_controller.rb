@@ -46,35 +46,36 @@ class UniversitiesController < ApplicationController
             redirect_to universities_url, notice: "University not found."
         end
     end
-    
-    #Edit the University's details
-    def edit
-        @locations = Location.limit(2000) # we do not expect to exceed locations to be more than 2000
-    end
-    
+
     def new
         @locations = Location.limit(2000) # we do not expect to exceed locations to be more than 2000
         @university = University.new
         render "new"
     end
     
+    # NOTE: WE DECIDED TO NOT ALLOW FOR EDITS AND DELETES ANY MORE AFTER CREATION!
+    #Edit the University's details
+    def edit
+        #@locations = Location.limit(2000) # we do not expect to exceed locations to be more than 2000
+    end
+    
     #Update the database
     def update
-        @university.name = params[:name]
-        @university.location_id = Location.find_by(:city => params[:location]).id
-        @university.description = params[:description]
-        @university.logo_url = params[:logo_url]
-        if @university.save
-            redirect_to university_url, notice: "Successfully edited university information."
-        else
-            render "edit"
-        end
+        #@university.name = params[:name]
+        #@university.location_id = Location.find_by(:city => params[:location]).id
+        #@university.description = params[:description]
+        #@university.logo_url = params[:logo_url]
+        #if @university.save
+        #    redirect_to university_url, notice: "Successfully edited university information."
+        #else
+        #    render "edit"
+        #end
     end
     
     #Delete university from database
     def destroy
-        @university.delete
-        redirect_to universities_url
+        #@university.delete
+        #redirect_to universities_url
     end
     
 end

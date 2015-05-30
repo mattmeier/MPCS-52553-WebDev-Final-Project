@@ -45,31 +45,32 @@ class LocationsController < ApplicationController
         end
     end
     
-    #Edit the Location's details
-    def edit
-    end
-    
     def new
         @location = Location.new
         render "new"
     end
+
+    # NOTE: WE DECIDED TO NOT ALLOW FOR EDITS AND DELETES ANY MORE AFTER CREATION!
+    #Edit the Location's details
+    def edit
+    end
     
     #Update the database
     def update
-        @location.city = params[:city]
-        @location.state = params[:state]
-        @location.description = params[:description]
-        if @location.save
-            redirect_to location_url, notice: "Successfully edited location information."
-        else
-            render "edit"
-        end
+        #@location.city = params[:city]
+        #@location.state = params[:state]
+        #@location.description = params[:description]
+        #if @location.save
+        #    redirect_to location_url, notice: "Successfully edited location information."
+        #else
+        #    render "edit"
+        #end
     end
     
     #Delete location from database
     def destroy
-        @location.delete
-        redirect_to locations_url
+        #@location.delete
+        #redirect_to locations_url
     end
     
 end
