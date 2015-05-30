@@ -1,13 +1,12 @@
 class EventsignupsController < ApplicationController
     
     before_action :require_user, :only => [:create, :destroy]
-    before_action :authorize, :only => [:create, :destroy] # only allow a user to create and delete his own event signups
+    before_action :authorize, :only => [:destroy] # only allow a user to delete his own event signups
     
     # Only allow the user who created the event to delete an event signup
     def authorize
-        @eventsignup = EventSignup.find_by(id: params["id"])
-        @user = User.find_by(id: @eventsignup.user_id)
-        if @user.blank? || session[:user_id] != @user.id
+        @user_ids = EventSignup.where(event_id: params["event_id"]).pluck(:user_id)
+        if @user_ids.blank? || !@user_ids.include?(session[:user_id])
           redirect_to events_url, notice: "You can only delete your own event signups!"
         end
     end 
@@ -21,10 +20,10 @@ class EventsignupsController < ApplicationController
     #Create a new event signup
     def create
         @eventsignup = EventSignup.new
-        @user_id = User.find_by(id: session["user_id"]).id
-        @event_id = @params["event_id"]
+        @eventsignup.user_id = User.find_by(id: session["user_id"]).id
+        @eventsignup.event_id = params["event_id"]
         if @eventsignup.save
-            redirect_to "/events/#{@event_id}", notice: "Thanks for signing up to this event."
+            redirect_to "/events/#{@eventsignup.event_id}", notice: "Thanks for signing up to this event."
         else 
             render "/events", notice: "Error."
         end

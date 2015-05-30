@@ -13,7 +13,7 @@
 	<% end %>
 <% end %>
 
-<% if User.find_by(id: session["user_id"]).present? %> 
+<% if session["user_id"].present? %> 
 	<p><%= link_to "Sign up for this event!", "/eventsignups/#{@event.id}/", :method => 'post'  %> </p>
 <% else %>
 	<p><%= link_to "Log in to sign up for the event!", "/login" %></p>
@@ -21,5 +21,30 @@
 
 <h4 style="clear:both; margin-top: 60px">These users have already signed up for the event:</h4>
 
+<table class="table table-striped">
+	
+	<tr>
+		<th>Name</th>
+		<th>Email</th>
+		<th>University</th>
+		<th>Graduation Year</th>
+		<th>Major</th>
+		<th>Location</th>
+		<th></th>
+	</tr>
+
+	<% @users.each do |user| %>
+	<tr>
+		<!--Retrieve and show the info of each user. Query database to find the user's details corresponding with the id-->
+		<td><%= link_to user.name, user_path(user.id) %></td>
+		<td><%= mail_to user.email,"#{user.email}"  %></td>
+		<td><%= link_to University.find_by(id: user.university_id).name, university_path(user.university_id) %></td>
+		<td><%= user.graduation_year %> </td>
+		<td><%= user.major %> </td>
+		<td><%= link_to Location.find_by(id: user.location_id).city, location_path(user.location_id) %></td>
+	</tr>
+	<% end %>
+	
+</table>
 
 <p><%= link_to "Back to events main page", "/events" %> </p>

@@ -67,6 +67,9 @@ class EventsController < ApplicationController
     def show
         if @event == nil
             redirect_to events_url, notice: "Event not found."
+        else 
+            user_ids = EventSignup.where(event_id: @event.id).limit(1000).pluck(:user_id) # we do not expect more than 1000 people to sign up for an event
+            @users = User.where(id: user_ids) 
         end
     end
     

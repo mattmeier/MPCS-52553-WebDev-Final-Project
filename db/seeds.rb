@@ -7,6 +7,7 @@ Location.delete_all
 University.delete_all
 Friendship.delete_all
 Event.delete_all
+EventSignup.delete_all
 
 Location.create(id: '1', city: 'Chicago', state: 'IL', description: "The City of Chicago covers an  area of 60,000 hectares and sits 176 meters (578 feet) above sea level on the southwestern shore of Lake Michigan. At 190 km wide and 495 km long, its the 5th largest body of fresh water in the world. The city is traversed by the Chicago and Calumet rivers. Chicago's extensive parklands, including 3,000 hectares of city parks attract an estimated 86 million visitors annually. \nAs a multicultural city that thrives on the harmony and diversity of its neighborhoods, Chicago today embodies the values of America's heartland-integrity, hard work and community and reflects the ideals in the social fabric of  its 77 distinct neighborhoods. \nChicago is recognized across the United States as a very passionate sports town. Chicago is a leader in reforming public schools, enhancing public safety and security initiatives, providing affordable housing in attractive and economically sound communities, ensuring accessibility for all and fostering, social, economic and environmental sustainability.")
 Location.create(id: '2', city: 'New York City', state: 'NY', description: "New York – often called New York City or the City of New York to distinguish it from the State of New York, of which it is a part – is the most populous city in the United States and the center of the New York metropolitan area, the premier gateway for legal immigration to the United States and one of the most populous urban agglomerations in the world. A global power city, New York exerts a significant impact upon commerce, finance, media, art, fashion, research, technology, education, and entertainment. Home to the headquarters of the United Nations, New York is an important center for international diplomacy[14] and has been described as the cultural and financial capital of the world.")
@@ -57,5 +58,15 @@ Event.create(id: 4, name: 'Bulldogs in Dallas - Monthly Stammtisch', creator_id:
 Event.create(id: 5, name: 'Annual Washington Harvard-Club Summer BBQ', creator_id: 4, university_id: 3, location_id: 4, address: 'tba', start_time: DateTime.new(2015,7,3,18), end_time: DateTime.new(2015,7,3,22), description: 'The annual summer BBQ is an established tradition of the Washington Harvard-Club and an event not to be missed. We will serve all sorts of meats, sausages and grilled veggies as well as a variety of soft drinks and cocktails. The location will be announced closer to the event!', organizer_contact_email: 'andrews@harvard.edu')
 Event.create(id: 6, name: 'Columbia Alumni River Cruise', creator_id: 7, university_id: 7, location_id: 6, address: 'Details announced later!', start_time: DateTime.new(2015,7,22,16), end_time: DateTime.new(2015,7,22,19), description: 'Join us for an awesome river cruise. More details to be announced soon, but save the date!', organizer_contact_email: 'rl@columbia.edu')
 Event.create(id: 7, name: 'Berkeley New York After-Work Meetup', creator_id: 3, university_id: 7, location_id: 2, address: 'The Professional Cocktail Bar, Rowley Street 44', start_time: DateTime.new(2015,7,1,19), end_time: DateTime.new(2015,7,1,22), description: 'Come along to our monthly after-work meetup. This is a great way to stay in touch with old Berkeley friends and meet alumni in the city.', organizer_contact_email: 'lesser@berkeley.edu')
+
+EventSignup.create(id: 1, user_id: 8, event_id: 1)
+EventSignup.create(id: 2, user_id: 1, event_id: 2)
+EventSignup.create(id: 3, user_id: 5, event_id: 3)
+EventSignup.create(id: 4, user_id: 6, event_id: 4)
+EventSignup.create(id: 5, user_id: 4, event_id: 5)
+EventSignup.create(id: 6, user_id: 7, event_id: 6)
+EventSignup.create(id: 7, user_id: 3, event_id: 7)
+EventSignup.create(id: 8, user_id: 2, event_id: 2)
+
 
 puts "Seeded succesfully."
