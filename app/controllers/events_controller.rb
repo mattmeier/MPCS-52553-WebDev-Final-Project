@@ -37,11 +37,11 @@ class EventsController < ApplicationController
     
     #Create a new event and insert the new user into table, based on input parameters
     def create
-        @creator = User.find_by(id: session["user_id"]).id
-        @event.creator_id = @creator.id #track who created the event; only this user can edit and delete it
         @universities = University.limit(2000) # we do not expect to exceed universities to be more than 2000
         @locations = Location.limit(2000) # we do not expect to exceed locations to be more than 2000
         @event = Event.new
+        @creator = User.find_by(id: session["user_id"])
+        @event.creator_id = @creator.id #track who created the event; only this user can edit and delete it
         @event.name = params[:name]
         @event.university_id = University.find_by(:name => params[:university]).id
         @event.location_id = Location.find_by(:city => params[:location]).id
