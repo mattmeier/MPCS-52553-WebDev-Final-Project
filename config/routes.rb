@@ -12,6 +12,9 @@ Rails.application.routes.draw do
     post '/sessions' => 'sessions#create'
 
     delete "/logout" => 'sessions#destroy'
+
+    post '/eventsignups/:event_id'  => 'eventsignups#create'
+    delete '/eventsignups/:event_id'  => 'eventsignups#destroy'
       
     #########################################################
     # The "Golden 7" for accessing the "users" resource
@@ -32,6 +35,5 @@ Rails.application.routes.draw do
     resources :locations
     resources :universities
     resources :events
-    resources :eventsignups
 
 end

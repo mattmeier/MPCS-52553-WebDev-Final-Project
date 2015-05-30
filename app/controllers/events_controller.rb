@@ -51,6 +51,12 @@ class EventsController < ApplicationController
         @event.description = params[:description]
         @event.organizer_contact_email = @creator.email
         if @event.save
+            # first also make sure that the creator also gets signed up for his own event
+            @eventsignup = Eventsignup.new
+            @user_id = @creator.id
+            @event_id = @event.id
+            @eventsignup.save
+            # now redirect
             redirect_to events_url, notice: "Thanks for adding this new event."
         else
             render "new"
