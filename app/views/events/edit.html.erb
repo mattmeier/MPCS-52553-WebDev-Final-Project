@@ -54,5 +54,7 @@
 
 <% end %>
 
+<p><%= link_to "Permanently delete event",  event_path(@event.id), :method => 'delete' %></p>
+
 <p><%= link_to "Back to events page", "/events" %> </p>
 

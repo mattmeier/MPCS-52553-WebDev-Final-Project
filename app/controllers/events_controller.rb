@@ -100,7 +100,7 @@ class EventsController < ApplicationController
     #Delete event from database
     def destroy
         @event.delete
-        redirect_to events_url
+        redirect_to events_url, notice: "Event deleted."
     end
     
 end
