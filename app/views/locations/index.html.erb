@@ -1,11 +1,3 @@
-<% if cookies["location_id"].present? %>
-  <h3>Your browsing history</h3>
-
-  <p>
-    <%= Location.find_by(id: cookies["location_id"]).city%>
-  </p>
-<% end %>
-
 <h2> Stay in touch with your former classmates in your city! </h2>
 
 <p><%= link_to "If your current location is not yet covered, create it now and kick off a new community!", "/locations/new" %></p>

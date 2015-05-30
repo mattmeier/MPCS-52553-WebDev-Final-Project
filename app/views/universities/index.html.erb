@@ -1,11 +1,3 @@
-<% if cookies["university_id"].present? %>
-  <h3>Your browsing history</h3>
-
-  <p>
-    <%= University.find_by(id: cookies["university_id"]).name%>
-  </p>
-<% end %>
-
 <h2> Stay in touch with your former classmates from your alma mater! </h2>
 
 <p><%= link_to "If your university is not yet covered, create it now and kick off a new community!", "/universities/new" %></p>
