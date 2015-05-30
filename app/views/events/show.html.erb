@@ -1,7 +1,7 @@
 <h2><%= @event.name %></h2>
 <p><b>University:</b> <%= University.find_by(:id => @event.university_id).name %> </p>
 <p><b>Location:</b> <%= Location.find_by(:id => @event.location_id).city%> </p>
-<p><b>Addresss:</b> <%= @event.address %> </p>
+<p><b>Address:</b> <%= @event.address %> </p>
 <p><b>Start Time:</b> <%= @event.start_time%> </p>
 <p><b>End Time:</b> <%= @event.end_time%> </p>
 <p><b>Description:</b> <%= @event.description %> </p>
