@@ -5,10 +5,10 @@ class UsersController < ApplicationController
 
 
     def authorize
-    #    @user = User.find_by(id: params[:id])
-    #    if @user.blank? || session[:user_id] != @user.id
-    #      redirect_to root_url, notice: "Nice try!"
-    #    end
+        #@user = User.find_by(id: params[:id])
+        #if @user.blank? || session[:user_id] != @user.id
+        #  redirect_to root_url, notice: "Nice try!"
+        #end
     end 
     
     def find_user
@@ -81,8 +81,8 @@ class UsersController < ApplicationController
     #Show user details
     def show
         if @user == nil
-            redirect_to users_url, notice: "User not found."
-        else
+            redirect_to users_url, notice: "Error. User not found."
+        else 
             cookies["user_ids"] ||= ""
             if !cookies['user_ids'].include?(@user.id.to_s)
                 cookies["user_ids"] += "#{@user.id} "
@@ -92,6 +92,7 @@ class UsersController < ApplicationController
     
     #Edit the user's details
     def edit
+        @user = User.find_by(id: session["user_id"]) #make sure the user can only edit own profile
         @universities = University.limit(2000) # we do not expect to exceed universities to be more than 2000
         @locations = Location.limit(2000) # we do not expect to exceed locations to be more than 2000
     end
@@ -105,6 +106,7 @@ class UsersController < ApplicationController
     
     #Update the database
     def update
+        @user = User.find_by(id: session["user_id"]) #make sure the user can only edit own profile
         @universities = University.limit(2000) # we do not expect to exceed universities to be more than 2000
         @locations = Location.limit(2000) # we do not expect to exceed locations to be more than 2000
     
@@ -143,8 +145,9 @@ class UsersController < ApplicationController
     def destroy
         cookies.delete("user_id")
         cookies.delete("user_ids")
-        @user.delete
-        redirect_to users_url
+        User.find_by(id: session["user_id"]).delete # make sure only the user with the session is deleted and no hijacking is allowed
+        session.delete("user_id")
+        redirect_to users_url, notice: "Sorry to see you go. In case you change your mind, sign up again at any time!"
     end
     
 end

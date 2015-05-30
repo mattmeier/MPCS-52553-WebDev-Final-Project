@@ -75,9 +75,9 @@
   	<%= label_tag(:interested_in_hanging_out_no, "I am not interested in hanging out") %>
 </p>
 
-<br>
-
 <input type="submit" name="commit" value="Confirm Edit">
 
 <% end %>
+
+<%= link_to "Permanently delete my profile",  user_path(session[:user_id]), :method => 'delete' %>
 <p><%= link_to "Back to main page", "/users" %> </p>
