@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
     has_secure_password
-    has_many :event_signups
-    has_many :events, through: :event_signups
-    has_and_belongs_to_many :friendships
+    has_many :event_signups, :dependent => :delete_all
+    has_many :events, through: :event_signups, :dependent => :delete_all
+    has_and_belongs_to_many :friendships, :dependent => :delete_all
     belongs_to :location
     belongs_to :university
     

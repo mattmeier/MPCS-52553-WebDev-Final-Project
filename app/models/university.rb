@@ -1,6 +1,6 @@
 class University < ActiveRecord::Base
-    has_many :users
-    has_many :events
+    has_many :users, dependent: :restrict_with_exception
+    has_many :events, dependent: :restrict_with_exception
     belongs_to :location
     
     validates :name, :uniqueness => true, :allow_nil => false

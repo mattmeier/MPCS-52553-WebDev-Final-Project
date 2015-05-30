@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
-    has_many :event_signups
+    has_many :event_signups, :dependent => :delete_all
     has_many :users, through: :event_signups
     belongs_to :university
     belongs_to :location
