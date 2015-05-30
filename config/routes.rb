@@ -32,5 +32,6 @@ Rails.application.routes.draw do
     resources :locations
     resources :universities
     resources :events
+    resources :eventsignups
 
 end
