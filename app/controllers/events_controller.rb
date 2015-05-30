@@ -11,6 +11,7 @@ class EventsController < ApplicationController
         if params["keyword"].present?
             location_ids = Location.where("city LIKE ?", "%#{params["keyword"]}")
             @events = Event.where(:location_id => location_ids)
+            @event_count = @events.count
         elsif params["page"].present?
             @page = params["page"].to_i + 1
             @events = Event.limit(100).offset((params["page"].to_i - 1) * 100)

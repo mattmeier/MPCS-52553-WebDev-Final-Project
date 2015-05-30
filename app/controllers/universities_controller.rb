@@ -10,6 +10,7 @@ class UniversitiesController < ApplicationController
     def index
         if params["keyword"].present?
             @universities = University.where("name LIKE ?", "%#{params["keyword"]}")
+            @university_count = @universities.count
         elsif params["page"].present?
             @page = params["page"].to_i + 1
             @universities = University.limit(100).offset((params["page"].to_i - 1) * 100)

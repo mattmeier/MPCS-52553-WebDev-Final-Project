@@ -10,6 +10,7 @@ class LocationsController < ApplicationController
     def index
         if params["keyword"].present?
             @locations = Location.where("city LIKE ?", "%#{params["keyword"]}")
+            @location_count = @locations.count
         elsif params["page"].present?
             @page = params["page"].to_i + 1
             @locations = Location.limit(100).offset((params["page"].to_i - 1) * 100)
