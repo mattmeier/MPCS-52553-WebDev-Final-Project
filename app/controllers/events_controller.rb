@@ -78,6 +78,9 @@ class EventsController < ApplicationController
     
     #Update the database
     def update
+        @universities = University.limit(2000) # we do not expect to exceed universities to be more than 2000
+        @locations = Location.limit(2000) # we do not expect to exceed locations to be more than 2000
+        @event.creator_id = User.find_by(id: session["user_id"]).id #tracks who created the event; only this user can edit and delete it
         @event = Event.new
         @event.name = params[:name]
         @event.university_id = University.find_by(:name => params[:university]).id

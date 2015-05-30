@@ -7,7 +7,9 @@
 <p><b>Bio:</b> <%= @user.bio %> </p>
 <p><b>Interested in hanging out:</b> <%= @user.interested_in_hanging_out %> </p>
 <p><b>Willing to host:</b> <%= @user.interested_in_hosting %> </p>
-<% if @user.id == User.find_by(id: session["user_id"]).id %>
-	<p><%= link_to "Edit profile details or change password", "/users/#{@user.id}/edit" %> </p>
+<% if User.find_by(id: session["user_id"]).present? %> 
+	<% if @user.id == User.find_by(id: session["user_id"]).id %>
+		<p><%= link_to "Edit profile details or change password", "/users/#{@user.id}/edit" %> </p>
+	<% end %>
 <% end %>
 <p><%= link_to "Back to users main page", "/users" %> </p>

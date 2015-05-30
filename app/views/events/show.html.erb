@@ -6,7 +6,9 @@
 <p><b>End Time:</b> <%= @event.end_time%> </p>
 <p><b>Description:</b> <%= @event.description %> </p>
 <p><b>Organizer Contact Email:</b> <%= mail_to "#{@event.organizer_contact_email}", @event.organizer_contact_email %> </p>
-<% if @event.creator_id == User.find_by(id: session["user_id"]).id %>
-	<p><%= link_to "Edit", "/events/#{@event.id}/edit" %> </p>
+<% if User.find_by(id: session["user_id"]).present? %> 
+	<% if @event.creator_id == User.find_by(id: session["user_id"]).id %>
+		<p><%= link_to "Edit", "/events/#{@event.id}/edit" %> </p>
+	<% end %>
 <% end %>
 <p><%= link_to "Back to events main page", "/events" %> </p>

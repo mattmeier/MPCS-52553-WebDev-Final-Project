@@ -30,9 +30,11 @@
 		<td><%= event.start_time %> </td>
 		<td><%= event.end_time %> </td>
 		<td><%= mail_to event.organizer_contact_email,"#{event.organizer_contact_email}"  %></td>
-		<% if event.creator_id == User.find_by(id: session["user_id"]).id %>
-			<td><%= link_to "Edit", "/events/#{event.id}/edit" %></td>
-			<td><%= link_to "Delete",  event_path(event.id), :method => 'delete' %></td>
+		<% if User.find_by(id: session["user_id"]).present? %> 
+			<% if event.creator_id == User.find_by(id: session["user_id"]).id %>
+				<td><%= link_to "Edit", "/events/#{event.id}/edit" %></td>
+				<td><%= link_to "Delete",  event_path(event.id), :method => 'delete' %></td>
+			<% end %>
 		<% end %>
 	</tr>
 	<% end %>
