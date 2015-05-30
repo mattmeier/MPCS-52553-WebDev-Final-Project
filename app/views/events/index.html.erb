@@ -3,7 +3,10 @@
 <% if session["user_id"].present? %>
 	<h4>You have signed up for the following events:</h4>
  	<% EventSignup.where(user_id: session["user_id"]).pluck(:event_id).each do |event_id| %>
-		<%= link_to "#{Event.find_by(id: event_id).name}", event_path(event_id) %> <br>
+ 		<% @event = Event.find_by(id: event_id) %>
+ 		<% if @event %>
+			<%= link_to "#{@event.name}", event_path(event_id) %> <br>
+		<% end %>
 	<% end %>
 <% end %>
 
