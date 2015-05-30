@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
     
     root 'users#index'
+
+    get '/history/clear' => 'histories#destroy'
     
     ##### Sign Up and Sign In and Sign Out
     get "/signup" => 'users#new'
