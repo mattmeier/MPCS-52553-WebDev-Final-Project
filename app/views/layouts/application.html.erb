@@ -19,9 +19,9 @@
       <small><%= link_to "Universities", '/universities' %></small>
       <small><%= link_to "Events", '/events' %></small>
 
-      <% if cookies["user_id"].present? %>
-        <small> &nbsp;&nbsp;&nbsp;Hello, <%= User.find_by(id: cookies["user_id"]).name %> &nbsp;&nbsp;</small>
-        <small><%= link_to "Edit Profile", "/users/#{User.find_by(id: cookies["user_id"]).id}/edit" %></small>
+      <% if session["user_id"].present? %>
+        <small> &nbsp;&nbsp;&nbsp;Hello, <%= User.find_by(id: session["user_id"]).name %> &nbsp;&nbsp;</small>
+        <small><%= link_to "Edit Profile", "/users/#{User.find_by(id: session["user_id"]).id}/edit" %></small>
         <small><%= link_to "Sign Out", '/logout', :method => 'delete' %></small>
       <% else %>
           <small><%= link_to "Sign Up", '/signup' %></small>
