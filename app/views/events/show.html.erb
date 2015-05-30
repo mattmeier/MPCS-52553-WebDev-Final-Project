@@ -6,6 +6,7 @@
 <p><b>End Time:</b> <%= @event.end_time%> </p>
 <p><b>Description:</b> <%= @event.description %> </p>
 <p><b>Organizer Contact Email:</b> <%= mail_to "#{@event.organizer_contact_email}", @event.organizer_contact_email %> </p>
+<p><b>Confirmed attendees so far:</b> <%= @users.count %> </p>
 <% if User.find_by(id: session["user_id"]).present? %> 
 	<% if @event.creator_id == User.find_by(id: session["user_id"]).id %>
 		<p><%= link_to "Edit event details", "/events/#{@event.id}/edit" %></p>
@@ -23,7 +24,7 @@
 	<p><%= link_to "Log in to be able to sign up for this event!", "/login" %></p>
 <% end %>
 
-<h4 style="clear:both; margin-top: 60px">These users have already signed up for the event:</h4>
+<h4 style="clear:both; margin-top: 60px"> These users have already signed up for the event:</h4>
 
 <table class="table table-striped">
 	

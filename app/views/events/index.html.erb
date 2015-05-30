@@ -1,5 +1,12 @@
 <h2> Check out some of our events! </h2>
 
+<% if session["user_id"].present? %>
+	<h4>You have signed up for the following events:</h4>
+ 	<% EventSignup.where(user_id: session["user_id"]).pluck(:event_id).each do |event_id| %>
+		<%= link_to "#{Event.find_by(id: event_id).name}", event_path(event_id) %> <br>
+	<% end %>
+<% end %>
+
 <p><%= link_to "Click here to create an own event!", "/events/new" %></p>
 
 <%= form_tag events_url, :method => "get" do %>
