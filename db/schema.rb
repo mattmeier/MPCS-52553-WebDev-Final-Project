@@ -30,8 +30,10 @@ ActiveRecord::Schema.define(version: 0) do
     t.text     "description"
     t.string   "organizer_contact_email"
     t.string   "address"
+    t.integer  "creator_id"
   end
 
+  add_index "events", ["creator_id"], name: "index_events_on_creator_id"
   add_index "events", ["location_id"], name: "index_events_on_location_id"
   add_index "events", ["university_id"], name: "index_events_on_university_id"
 

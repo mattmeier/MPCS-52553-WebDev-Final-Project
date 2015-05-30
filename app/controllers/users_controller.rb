@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
     
-    before_action :authorize, only: [:edit, :update, :destroy] # only allow index and show for other users, but not edit, update and destroy
+    before_action :authorize, :only => [:edit, :update, :destroy] # only allow index and show for other users, but not edit, update and destroy
     before_action :find_user, :only => [:show, :edit, :update, :destroy]
 
     def authorize

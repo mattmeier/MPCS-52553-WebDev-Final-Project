@@ -5,6 +5,7 @@ class Event < ActiveRecord::Base
     belongs_to :location
     
     validates_presence_of :name
+    validates_presence_of :creator_id
     validates_presence_of :address
     validates_presence_of :start_time
     validates_presence_of :end_time

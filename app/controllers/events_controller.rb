@@ -1,7 +1,17 @@
 class EventsController < ApplicationController
     
+    before_action :authorize, :only => [:edit, :update, :destroy] # only allow index and show for users who did not create the event, but not edit, update and destroy
     before_action :find_event, :only => [:show, :edit, :update, :destroy]
     
+    # Only allow the user who created the event to edit, update and destroy it
+    def authorize
+        @event = Event.find_by(id: params["id"])
+        @user = User.find_by(id: @event.creator_id)
+        if @user.blank? || session[:user_id] != @user.id
+          redirect_to events_url, notice: "Nice try!"
+        end
+    end 
+
     def find_event
         @event = Event.find_by(id: params["id"])
     end
@@ -27,6 +37,7 @@ class EventsController < ApplicationController
     
     #Create a new event and insert the new user into table, based on input parameters
     def create
+        @event.creator_id = User.find_by(id: session["user_id"]).id #track who created the event; only this user can edit and delete it
         @universities = University.limit(2000) # we do not expect to exceed universities to be more than 2000
         @locations = Location.limit(2000) # we do not expect to exceed locations to be more than 2000
         @event = Event.new
@@ -37,7 +48,7 @@ class EventsController < ApplicationController
         @event.start_time = DateTime.strptime(params[:start_time], '%m/%d/%Y %I:%M %p')
         @event.end_time = DateTime.strptime(params[:end_time], '%m/%d/%Y %I:%M %p')
         @event.description = params[:description]
-        @event.organizer_contact_email = params[:organizer_contact_email]
+        @event.organizer_contact_email = @user.email
         if @event.save
             redirect_to events_url, notice: "Thanks for adding this new event."
         else

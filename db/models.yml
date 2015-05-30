@@ -27,6 +27,7 @@ Friendship
 
 Event
   name: string
+  creator_id: integer
   university_id: integer
   location_id: integer
   address: string
