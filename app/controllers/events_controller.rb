@@ -46,8 +46,6 @@ class EventsController < ApplicationController
     
     #Show event details
     def show
-        cookies["event_id"] = @event.id
-        
         if @event == nil
             redirect_to events_url, notice: "Event not found."
         end
@@ -60,7 +58,6 @@ class EventsController < ApplicationController
     end
     
     def new
-        cookies.delete("event_id")
         @universities = University.limit(2000) # we do not expect to exceed universities to be more than 2000
         @locations = Location.limit(2000) # we do not expect to exceed locations to be more than 2000
         @event = Event.new

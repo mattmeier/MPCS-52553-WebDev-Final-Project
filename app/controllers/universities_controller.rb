@@ -40,7 +40,6 @@ class UniversitiesController < ApplicationController
     
     #Show university details
     def show
-        cookies["university_id"] = @university.id
         @university = University.find_by(id: params[:id])
         @users =  User.where(university_id: params[:id]).order('name')
         if @university == nil
@@ -54,7 +53,6 @@ class UniversitiesController < ApplicationController
     end
     
     def new
-        cookies.delete("university_id")
         @locations = Location.limit(2000) # we do not expect to exceed locations to be more than 2000
         @university = University.new
         render "new"

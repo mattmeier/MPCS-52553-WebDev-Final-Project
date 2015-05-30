@@ -38,7 +38,6 @@ class LocationsController < ApplicationController
     
     #Show location details
     def show
-        cookies["location_id"] = @location.id
         @location = Location.find_by(id: params[:id])
         @users =  User.where(location_id: params[:id]).order('name')
         if @location == nil
@@ -51,7 +50,6 @@ class LocationsController < ApplicationController
     end
     
     def new
-        cookies.delete("location_id")
         @location = Location.new
         render "new"
     end
