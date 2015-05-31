@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-    
+
     root 'users#index'
 
     get 'password_resets/new'

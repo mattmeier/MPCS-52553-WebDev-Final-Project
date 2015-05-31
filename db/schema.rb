@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20150531165519) do
 
   create_table "event_signups", force: :cascade do |t|
     t.integer "event_id"
@@ -53,16 +53,18 @@ ActiveRecord::Schema.define(version: 0) do
   add_index "universities", ["location_id"], name: "index_universities_on_location_id"
 
   create_table "users", force: :cascade do |t|
-    t.string  "email"
-    t.integer "university_id"
-    t.integer "graduation_year"
-    t.string  "major"
-    t.string  "bio"
-    t.integer "location_id"
-    t.string  "interested_in_hosting"
-    t.string  "interested_in_hanging_out"
-    t.string  "name"
-    t.string  "password_digest"
+    t.string   "email"
+    t.integer  "university_id"
+    t.integer  "graduation_year"
+    t.string   "major"
+    t.string   "bio"
+    t.integer  "location_id"
+    t.string   "interested_in_hosting"
+    t.string   "interested_in_hanging_out"
+    t.string   "name"
+    t.string   "password_digest"
+    t.string   "password_reset_token"
+    t.datetime "password_reset_sent_at"
   end
 
   add_index "users", ["location_id"], name: "index_users_on_location_id"
