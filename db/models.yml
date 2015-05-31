@@ -9,6 +9,8 @@ User
   location_id: integer
   interested_in_hosting: string
   interested_in_hanging_out: string
+  password_reset_token: string
+  password_reset_sent_at: datetime
 
 Location
   city: string
