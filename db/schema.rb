@@ -37,14 +37,6 @@ ActiveRecord::Schema.define(version: 0) do
   add_index "events", ["location_id"], name: "index_events_on_location_id"
   add_index "events", ["university_id"], name: "index_events_on_university_id"
 
-  create_table "friendships", force: :cascade do |t|
-    t.integer "requester_id"
-    t.integer "friend_id"
-  end
-
-  add_index "friendships", ["friend_id"], name: "index_friendships_on_friend_id"
-  add_index "friendships", ["requester_id"], name: "index_friendships_on_requester_id"
-
   create_table "locations", force: :cascade do |t|
     t.string "city"
     t.string "state"

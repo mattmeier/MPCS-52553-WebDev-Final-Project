@@ -5,7 +5,6 @@
 User.delete_all
 Location.delete_all
 University.delete_all
-Friendship.delete_all
 Event.delete_all
 EventSignup.delete_all
 
@@ -40,16 +39,6 @@ User.create(id: '5', name: 'Jessica Sanchez', email: 'sanchez@stanford.edu', pas
 User.create(id: '6', name: 'Monica Spiegel', email: 'spiegel@yale.edu', password: 'ahjasd233', university_id: 5, graduation_year: 2013, major: 'Biology', bio: 'Missing Yale people', location_id: '7', interested_in_hosting: 'no', interested_in_hanging_out: 'yes')
 User.create(id: '7', name: 'Ryan Lecher', email: 'rl@columbia.edu', password: 'aha12433', university_id: 6, graduation_year: 2015, major: 'German', bio: 'Give me a shout if you are in LA', location_id: '6', interested_in_hosting: 'yes', interested_in_hanging_out: 'yes')
 User.create(id: '8', name: 'Susie Mitchell', email: 'susiem@princeton.edu', password: 'aasdr433', university_id: 4, graduation_year: 2013, major: 'Computer Science', bio: 'I am a tiger forever in my heart!! And big rangers fan!', location_id: '2', interested_in_hosting: 'yes', interested_in_hanging_out: 'yes')
-
-Friendship.create(id: '1', requester_id: 1, friend_id: 3)
-Friendship.create(id: '2', requester_id: 1, friend_id: 2)
-Friendship.create(id: '3', requester_id: 2, friend_id: 4)
-Friendship.create(id: '4', requester_id: 3, friend_id: 5)
-Friendship.create(id: '5', requester_id: 6, friend_id: 4)
-Friendship.create(id: '6', requester_id: 3, friend_id: 7)
-Friendship.create(id: '7', requester_id: 4, friend_id: 1)
-Friendship.create(id: '8', requester_id: 3, friend_id: 2)
-Friendship.create(id: '9', requester_id: 2, friend_id: 7)
 
 Event.create(id: 1, name: 'Princeton Reunions', creator_id: 8, university_id: 4, location_id: 11, address: 'Main Campus', start_time: DateTime.new(2015,5,22,17), end_time: DateTime.new(2015,5,24,23), description: 'Reunions weekend attracts almost 25,000 alumni, family and friends for walks, talks, community service projects, Alumni-Faculty Forums, picnics, parties, concerts, dancing, meeting old friends, making new ones and, of course, marching in the One and Only P-rade! - See more at: http://alumni.princeton.edu/goinback/reunions/#sthash.JLm4qbYE.dpuf', organizer_contact_email: 'susie@princeton.edu')
 Event.create(id: 2, name: 'UChicago Alumni Meetup', creator_id: 1, university_id: 1, location_id: 9, address: 'Scholars Inn, West Washington Street 44',  start_time: DateTime.new(2015,5,29,18), end_time: DateTime.new(2015,5,29,22), description: 'Dear Boston Alumni, we are happy to have an informal UChicago Alumni Meetup this May. We will meet at the Scholars Inn, as always! Looking forward!', organizer_contact_email: 'meierm@uchicago.edu')

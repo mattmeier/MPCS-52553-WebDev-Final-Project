@@ -21,10 +21,6 @@ University
   description: text
   logo_url: string
 
-Friendship
-  requester_id: integer
-  friend_id: integer
-
 Event
   name: string
   creator_id: integer
