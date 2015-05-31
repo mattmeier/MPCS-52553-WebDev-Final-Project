@@ -2,6 +2,8 @@ Rails.application.routes.draw do
     
     root 'users#index'
 
+    get 'password_resets/new'
+
     get '/history/clear' => 'histories#destroy'
     
     ##### Sign Up and Sign In and Sign Out
@@ -20,7 +22,7 @@ Rails.application.routes.draw do
     # The "Golden 7" for accessing the "users" resource
     
     resources :users
-    
+    resources :password_resets
     # get '/users/new' => 'users#new', as: 'new_user'
     # post '/users' => 'users#create', as: 'users'
     
