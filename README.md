@@ -3,7 +3,7 @@ Final Project for the MPCS 52553 Web Development class at the University of Chic
 
 StayInTouch is a Ruby on Rails powered alumni database website, featuring alumni from your university and at your location after graduation, as well as alumni events hosted in your region. It includes user profiles with secure authentication, dynamic creation of new city and university community profiles, and hosting of and sign ups for events. 
 
-The project includes “Forgot Password” functionality via email. To test it, log out of your registered user account and go to sign up. Then click the "Forgot Password?" link and on the reset page enter your email you have registered your account with. If you have entered the correct email, you should get a success message and be redirected to the main page. Then please go into the log and look there for a message like the following:
+The project includes “Forgot Password” functionality via email. To test it, log out of your registered user account and go to sign up. Then click the "Forgot Password?" link and on the reset page enter your email you have registered your account with. If you have entered the correct email, you should be redirected to the main page and get a success message there. Then you should receive an email with the reset instructions. However, sometimes the message gets caught by the Spam filter (like in the case of the UChicago email server) - if this happens, please go into the log and look there for a message like the following:
 "UserMailer#password_reset: processed outbound mail in 56.2ms
 
 Sent mail to <your email address> (144.0ms)
